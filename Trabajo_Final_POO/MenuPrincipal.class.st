@@ -55,7 +55,7 @@ botonUsuario position: 50@155.
 botonBiblioteca  position: botonUsuario position + (0@80).
 titulo position: 200@15.
 "acciones"
-botonBiblioteca mouseAction: [ Registrar_Biblioteca  crearOpcion_titulo: 'BIBLIOTECA' ySistema: miSistema  ].
+botonBiblioteca mouseAction: [ UI_biblioteca   crearOpcion_titulo: 'BIBLIOTECA' ySistema: miSistema  ].
 botonUsuario mouseAction: [UI_usuario crearOpcion_titulo: 'USUARIO' ySistema: miSistema   ].
 botonCerrar mouseAction: [ self cerrar.].
 

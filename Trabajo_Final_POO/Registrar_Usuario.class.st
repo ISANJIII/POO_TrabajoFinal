@@ -52,11 +52,11 @@ botonRegistrar mouseAction: [
 		|usuario usuarioP|.
 		(cajaOpcion  verEstado ) ifTrue:[
 			"selecciono osea quiere ser plus"
-			usuarioP := UsuarioPlus crearUsuarioPlus_nombre:(datoNombre text asString )  yApellido: (datoApellido text asString) yDni:(datoDni text asString)  yContraseña:(datoContraseña text asString )  .
+			usuarioP := UsuarioPlus crearUsuarioPlus_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )  .
 				miSistema agregarUsuario: usuarioP .	
 			] ifFalse:[
 			"no selecciono quiere ser usuario no plus"
-usuario := Usuario crearUsuario_nombre:(datoNombre text asString )  yApellido: (datoApellido text asString) yDni:(datoDni text asString)  yContraseña:(datoContraseña text asString ).
+usuario := Usuario crearUsuario_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input ).
 			miSistema agregarUsuario: usuario .
 			].	
 		].

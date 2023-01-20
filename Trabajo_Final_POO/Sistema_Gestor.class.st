@@ -96,13 +96,6 @@ Sistema_Gestor >> getBibliotecas [
 ]
 
 { #category : #'as yet unclassified' }
-Sistema_Gestor >> getBibliotecasNombres [
-|lista |.
-lista:=OrderedCollection new.
-^lista.
-]
-
-{ #category : #'as yet unclassified' }
 Sistema_Gestor >> getColUsuario [
 ^colUsuario.
 
@@ -131,4 +124,18 @@ exito:=false.
 colUsuario do:[:i| (i buscarUsuario_Dni: ((numDni)asString) yContraseña: ((password)asString)) ifTrue:  [exito:=true]].
 
 ^exito.
+]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> modificarBiblioteca_id: numId [
+
+
+]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> modificarBiblioteca_id: numId agregarLibro:unLibro [
+
+colBiblioteca do:[:i| (i biblioteca_ID: numId)ifTrue:[ i agregarLibro: unLibro  ].  ].
+
+
 ]

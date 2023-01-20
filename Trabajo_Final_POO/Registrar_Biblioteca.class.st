@@ -68,7 +68,7 @@ botonRegistrar mouseAction: [
 		|biblio|.
 		biblio :=Biblioteca crearBiblioteca_id: datoIdentificador text asString  yDireccion:datoDireccion text asString yNombre: datoNombreE text asString yTelContacto:datoTelCont text asString   yRepresentante:datoNombRepresentante text asString  yDiasParaPrestar: datoDiasParaPrestar text asString.
 		miSistema agregarBiblioteca: biblio.
-		AgregarLibro crearOpcion_titulo: 'Agregar libros a la biblioteca' ySistema:  miSistema .
+		AgregarLibro crearOpcion_titulo: 'AGREGAR LIBRO' yBiblioteca: biblio .
 		self cerrar .
 		].
 	 ].

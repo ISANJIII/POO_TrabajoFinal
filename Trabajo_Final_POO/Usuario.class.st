@@ -42,7 +42,7 @@ texto:='Nombre: ',nombre asString,String cr,'Apellido: ',apellido asString ,Stri
 
 { #category : #'as yet unclassified' }
 Usuario >> agregarBibliotecaInteres:unaBiblio [
-colBibibliotecaInter  add:unaBiblio.
+colBibibliotecaInter add:unaBiblio.
 
 ]
 
@@ -73,6 +73,6 @@ multado :=false.
 { #category : #toString }
 Usuario >> toString [
 |texto|.
-texto:='Nombre: ',nombre,String cr,'Apellido: ',apellido ,String cr,'DNI: ',dni,String cr,String cr. 
+texto:='Nombre: ',nombre,String cr,'Apellido: ',apellido ,String cr,'DNI: ',dni,String cr,'Bibliotecas de interes:',(colBibibliotecaInter size),String cr. 
 ^texto .
 ]

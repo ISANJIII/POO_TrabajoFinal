@@ -32,13 +32,20 @@ texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccio
 { #category : #'as yet unclassified' }
 Biblioteca >> agregarLibro: unLibro [
 
-colPrestamo add: unLibro  .
+colLibro add: unLibro  .
+self changed: colLibro .
 ]
 
 { #category : #'as yet unclassified' }
-Biblioteca >> agregarPrestos: unPrestamo [
+Biblioteca >> agregarPrestamo: unPrestamo [
 
 colPrestamo add: unPrestamo .
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> biblioteca_ID: unID [
+
+^(unID = identificador).
 ]
 
 { #category : #'as yet unclassified' }

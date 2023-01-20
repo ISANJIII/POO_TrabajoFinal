@@ -6,17 +6,20 @@ Class {
 		'datoEditorial',
 		'datoAnioEd',
 		'botonAgregar',
-		'tipoLibro'
-	],
-	#classVars : [
-		'biblioRecibida'
+		'tipoLibro',
+		'biblioRe'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
 
 { #category : #'as yet unclassified' }
-AgregarLibro class >> crear_BibliotecaRecibida:biblio [
-biblioRecibida :=biblio .
+AgregarLibro class >> crearOpcion_titulo: tit yBiblioteca: unaBiblio [
+|opcion|.
+opcion:=self new.
+opcion recibirBiblioteca: unaBiblio .
+opcion agregarTitulo: tit.
+opcion openCenteredInWorld.
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -68,21 +71,47 @@ AgregarLibro >> botonAgregar [
 
 |tada|.
 tada:=StringMorph new.
-tada contents:'hola'.
+tada contents:'Libro agregado exitosamente'.
 
 botonAgregar :=BotonAccion crearBoton_nomb: 'AGREGAR' yDimension:100@20  yColor: Color pink.
 botonAgregar position: 385@415.
-self addMorph:botonAgregar. 
+self addMorph:botonAgregar.
 
 botonAgregar mouseAction: [ 
 (datoNombre isNotEmpty  & datoEditorial isNotEmpty & datoAnioEd isNotEmpty & tipoLibro isNotNil)ifTrue: [ 
+	|libro|.
 	((tipoLibro selectedItem)= 'Libro fisico')ifTrue:[
-		self addMorph: tada.
+
+		libro:=Libro crearLibro_nombre: (datoNombre input) yEditorial:(datoEditorial input)  yAnio_Edicion: (datoAnioEd).
+		
+	biblioRe agregarLibro: libro.
+		
+	
+		].
+	((tipoLibro selectedItem)= 'Libro electronico')ifTrue:[
+		
+		"libro:=Libro_Electronico crearLibroElectronico_nombre:  yEditorial:  yAnio_Edicion:  yFormato: 
+	"
 		]. 
+	((tipoLibro selectedItem)= 'Libro impreso')ifTrue:[
+		
+		
+	
+		]. 
+	((tipoLibro selectedItem)= 'Audio Libro')ifTrue:[
+		
+		
+	
+		].  
 	
 	
 	
 	 ]. 
+datoNombre clear.
+datoEditorial clear.
+datoAnioEd clear.
+tipoLibro clearArea .
+
 ].
 ]
 
@@ -95,5 +124,5 @@ self agregarCampos ;agregarTitulo;botonAgregar .
 
 { #category : #'as yet unclassified' }
 AgregarLibro >> recibirBiblioteca:biblio [ 
-biblioRecibida :=biblio .
+biblioRe :=biblio .
 ]
