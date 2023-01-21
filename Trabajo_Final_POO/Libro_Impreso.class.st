@@ -16,6 +16,14 @@ libro agregarCantidad_paginas: cPag.
 ^libro. 
 ]
 
+{ #category : #toString }
+Libro_Impreso >> aTexto [ 
+|text|.
+text:=super aTexto.
+text:=text,'LIBRO IMPRESO',String cr.
+^text.
+]
+
 { #category : #'as yet unclassified' }
 Libro_Impreso >> agregarCantidad_paginas:cantPaginas [
 cantidad_Paginas:=cantPaginas . 

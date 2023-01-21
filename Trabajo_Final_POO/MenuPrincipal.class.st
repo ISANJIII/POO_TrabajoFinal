@@ -29,8 +29,6 @@ MenuPrincipal >> initialize [
 super initialize .
 self fondoParaMiVentana.
 miSistema :=Sistema_Gestor crearSistemaAUsar.
-miSistema addDependent: self.
-
 self mostrarBotonesyTitulos .
 
 ]

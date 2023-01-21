@@ -11,7 +11,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 Sistema_Gestor class >> crearSistemaAUsar [
-|sis usuario1 usuario2 usuario3 usuario4 usuario5 biblioteca1 biblioteca2 biblioteca3 autor1 autor2 autor3 autor4|.
+|sis usuario1 usuario2 usuario3 usuario4 usuario5 biblioteca1 biblioteca2 biblioteca3 autor1 autor2 autor3 autor4 libro1|.
 sis:= self new.
 sis inicializadorSistema_Gestor.
 "creo usuarios plus y no plus"
@@ -28,10 +28,10 @@ sis agregarUsuario: usuario5.
 "creo bibliotecas"
 biblioteca1 := Biblioteca crearBiblioteca_id: '001' yDireccion:'Calle 123' yNombre: 'Biblioteca Central' yTelContacto: '555-555-5555' yRepresentante: 'Juan Pérez' yDiasParaPrestar: '7'.
 sis agregarBiblioteca: biblioteca1.
-biblioteca2 := Biblioteca crearBiblioteca_id: '002' yDireccion:'Calle 123' yNombre: 'Biblioteca Nacional' yTelContacto: '555-555-5556' yRepresentante: 'Juan Pérez' yDiasParaPrestar: '10'.
+"biblioteca2 := Biblioteca crearBiblioteca_id: '002' yDireccion:'Calle 123' yNombre: 'Biblioteca Nacional' yTelContacto: '555-555-5556' yRepresentante: 'Juan Pérez' yDiasParaPrestar: '10'.
 sis agregarBiblioteca: biblioteca2.
 biblioteca3 := Biblioteca crearBiblioteca_id: '003' yDireccion:'Calle 123' yNombre: 'Biblioteca SanPedro' yTelContacto: '555-555-5557' yRepresentante: 'Juan Pérez' yDiasParaPrestar: '5'.
-sis agregarBiblioteca: biblioteca3.
+sis agregarBiblioteca: biblioteca3."
 "creo autores"
 autor1 := Autor crearAutor_nombre: 'Juan' yApellido: 'Pérez'.
 sis agregarAutor: autor1 .
@@ -41,7 +41,11 @@ autor3 := Autor crearAutor_nombre: 'Cristopher' yApellido: 'Ovaillos'.
 sis agregarAutor: autor3 .
 autor4 := Autor crearAutor_nombre: 'Leonardo' yApellido: 'Pérez'.
 sis agregarAutor: autor4 .
+"libro"
+biblioteca1 agregarLibro:  (Libro crearLibro_nombre: 'La odisea' yEditorial:'Librería y Casa Editorial Hernando'  yAnio_Edicion:'1906'  ).
+
 sis changed.
+self changed.
  ^ sis.
 ]
 
@@ -72,6 +76,15 @@ colUsuario add:unUsuario.
 self changed: colUsuario.
 ]
 
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> buscarBiblioteca_id:unId [
+
+^colBiblioteca detect:[:i| (i biblioteca_ID: unId )].
+
+
+
+]
+
 { #category : #auxiliares }
 Sistema_Gestor >> colATexto: unaColeccion [
 
@@ -87,6 +100,7 @@ Sistema_Gestor >> colToString: unaColeccion [
 	| txt |
 	txt := ''.
 	unaColeccion do: [ :each | txt := txt , each toString , String cr ].
+	self changed: unaColeccion .
 	^ txt
 ]
 
@@ -99,6 +113,11 @@ Sistema_Gestor >> getBibliotecas [
 Sistema_Gestor >> getColUsuario [
 ^colUsuario.
 
+]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> getLibrosBibliteca_id: unId [
+^ (colBiblioteca detect:[:i| (i biblioteca_ID: unId )])getColLibro .
 ]
 
 { #category : #'as yet unclassified' }
@@ -136,6 +155,6 @@ Sistema_Gestor >> modificarBiblioteca_id: numId [
 Sistema_Gestor >> modificarBiblioteca_id: numId agregarLibro:unLibro [
 
 colBiblioteca do:[:i| (i biblioteca_ID: numId)ifTrue:[ i agregarLibro: unLibro  ].  ].
-
+self changed:colBiblioteca.
 
 ]

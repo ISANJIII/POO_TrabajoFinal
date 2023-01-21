@@ -17,6 +17,14 @@ libro setTipo: false.
 ^libro. 
 ]
 
+{ #category : #toString }
+Audio_Libro >> aTexto [ 
+|text|.
+text:=super aTexto.
+text:=text,'AUDIO LIBRO',String cr.
+^text.
+]
+
 { #category : #'as yet unclassified' }
 Audio_Libro >> agregarDuracion:dur [
 duracion:=dur.

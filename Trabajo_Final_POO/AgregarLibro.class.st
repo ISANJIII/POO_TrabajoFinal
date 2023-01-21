@@ -7,16 +7,20 @@ Class {
 		'datoAnioEd',
 		'botonAgregar',
 		'tipoLibro',
+		'idBuscar',
+		'reg'
+	],
+	#classVars : [
 		'biblioRe'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
 
 { #category : #'as yet unclassified' }
-AgregarLibro class >> crearOpcion_titulo: tit yBiblioteca: unaBiblio [
+AgregarLibro class >> crearOpcion_titulo: tit yBiblioteca: b [
 |opcion|.
 opcion:=self new.
-opcion recibirBiblioteca: unaBiblio .
+opcion recibirBiblioteca: b.
 opcion agregarTitulo: tit.
 opcion openCenteredInWorld.
 
@@ -82,11 +86,8 @@ botonAgregar mouseAction: [
 	|libro|.
 	((tipoLibro selectedItem)= 'Libro fisico')ifTrue:[
 
-		libro:=Libro crearLibro_nombre: (datoNombre input) yEditorial:(datoEditorial input)  yAnio_Edicion: (datoAnioEd).
-		
-	biblioRe agregarLibro: libro.
-		
-	
+		libro:=Libro crearLibro_nombre: (datoNombre input) yEditorial:(datoEditorial input)  yAnio_Edicion: (datoAnioEd input).
+	biblioRe agregarLibro: libro.	
 		].
 	((tipoLibro selectedItem)= 'Libro electronico')ifTrue:[
 		
@@ -112,14 +113,23 @@ datoEditorial clear.
 datoAnioEd clear.
 tipoLibro clearArea .
 
+
 ].
+]
+
+{ #category : #'as yet unclassified' }
+AgregarLibro >> idBiblioteca: unId [
+idBuscar :=unId .
 ]
 
 { #category : #initialization }
 AgregarLibro >> initialize [ 
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
-self agregarCampos ;agregarTitulo;botonAgregar .
+biblioRe addDependent:self .
+self update: (biblioRe getColLibro ).
+self agregarCampos ;agregarTitulo;botonAgregar.
+
 ]
 
 { #category : #'as yet unclassified' }

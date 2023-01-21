@@ -19,6 +19,13 @@ libro inicializadorLibro_nombre: n yEditorial:ed  yAnio_Edicion:aEd.
 ^libro. 
 ]
 
+{ #category : #toString }
+Libro >> aTexto [ 
+|text|.
+text:='Nombre: ', nombre asString, String cr, 'Editorial: ',editorial asString, String cr, 'Año edicion: ',(anio_Edicion asString), String cr.
+^text.
+]
+
 { #category : #'as yet unclassified' }
 Libro >> getTipo [
 ^tipo .

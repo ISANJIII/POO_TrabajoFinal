@@ -16,6 +16,14 @@ libro agregarFormato: form.
 ^libro. 
 ]
 
+{ #category : #toString }
+Libro_Electronico >> aTexto [ 
+|text|.
+text:=super aTexto.
+text:=text,'LIBRO ELECTRONICO',String cr.
+^text.
+]
+
 { #category : #'as yet unclassified' }
 Libro_Electronico >> agregarFormato:format [
 formato:=format. 

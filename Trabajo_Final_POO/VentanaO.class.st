@@ -6,9 +6,9 @@ Class {
 	#superclass : #BorderedMorph,
 	#instVars : [
 		'cerrar',
-		'vent',
 		'registro',
-		'listaRegistro'
+		'listaRegistro',
+		'colB'
 	],
 	#classVars : [
 		'miSistema'
@@ -71,11 +71,15 @@ self extent: fondo extent.
 { #category : #initialization }
 VentanaO >> initialize [ 
 super initialize .
+""
+colB:=StringMorph new.
+""
 cerrar := BotonAccion crearBoton_nomb: ' X' yDimension: 25@25 yColor: Color white .
 self addMorph: cerrar.
 cerrar position: 450@13.
 "registro de una coleccion"
 registro := MostrarRegistro crearRegistro_Dimension: 220@200 yPosicion: 260@40.
+registro setText:''.
 registro borderWidth: 2.
 registro borderColor: Color pink.
 "accion de botones"
@@ -85,9 +89,16 @@ cerrar mouseAction: [ self cerrar ].
 { #category : #updating }
 VentanaO >> update: unObjeto [
 "en Smalltalk Pharo significa que un objeto se hace de solo lectura, lo que significa que su estado no se puede modificar. Una vez que un objeto se hace de solo lectura, cualquier intento de cambiar su estado generará una excepción."
-
-(unObjeto isNil) ifTrue: [registro setText: 'Esperando usuarios Registrados'.]
-ifFalse:[registro setText: (miSistema colATexto: unObjeto) ].
+registro setText:''.
+(unObjeto isEmpty) ifTrue: [
+	registro setText: 'Esperando datos'.]
+ifFalse:[
+		colB contents: (miSistema colATexto: unObjeto). 
+		registro setText:(miSistema colATexto: unObjeto)asString.
+		colB contents: (miSistema colATexto: unObjeto).
+		
+		
+].
 self addMorph:registro.
 
 ]

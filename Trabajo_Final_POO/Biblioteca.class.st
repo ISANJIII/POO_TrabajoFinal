@@ -25,6 +25,7 @@ biblioteca inicializadorBiblioteca_id: ident yDireccion: dir yNombre: nomb yTelC
 { #category : #toString }
 Biblioteca >> aTexto [ 
 |texto|.
+texto :=''.
 texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccion asString ,String cr,'Nombre Establecimiento: ',nombre asString,String cr,'Num Contacto: ',telefono_Contacto asString,String cr, 'Nombre Representante',nombre_Representante asString,String cr, 'Cantidad de libros registrados: ', (colLibro size)asString,String cr. 
 ^texto .
 ]
@@ -33,7 +34,9 @@ texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccio
 Biblioteca >> agregarLibro: unLibro [
 
 colLibro add: unLibro  .
-self changed: colLibro .
+self changed:colLibro.
+
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -46,6 +49,17 @@ colPrestamo add: unPrestamo .
 Biblioteca >> biblioteca_ID: unID [
 
 ^(unID = identificador).
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> getColLibro [
+
+^colLibro.
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> getId [
+^identificador .
 ]
 
 { #category : #'as yet unclassified' }
