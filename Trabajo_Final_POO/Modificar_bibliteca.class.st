@@ -24,6 +24,7 @@ botonAgregar mouseAction: [
 	AgregarLibro crearOpcion_titulo: (biblioRe getNombreEstablecimiento) yBiblioteca:(biblioRe)].
 self cerrar .
 botonEliminar mouseAction:[
+	EliminarLibro crearOpcion_titulo:(biblioRe getNombreEstablecimiento)  yBiblioteca: (biblioRe).
 	
 	self cerrar.
 	].

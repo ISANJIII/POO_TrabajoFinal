@@ -29,7 +29,6 @@ self addMorph: botonSeleccionar .
 (listaBibliteca isNotNil) ifTrue:[
     botonSeleccionar mouseAction: [
 
-"(lista at:(listaBibliteca  selectedItem)) changed."
 Modificar_bibliteca crearOpcion_titulo:(listaBibliteca  selectedItem) yBiblioteca:(lista at:(listaBibliteca  selectedItem)).
         self cerrar.
         ].

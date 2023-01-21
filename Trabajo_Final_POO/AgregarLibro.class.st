@@ -85,11 +85,7 @@ botonAgregar mouseAction: [
 	((tipoLibro selectedItem)= 'Audio Libro')ifTrue:[
 		
 		
-	
 		].  
-	
-	
-	
 	 ]. 
 datoNombre clear.
 datoEditorial clear.

@@ -52,6 +52,12 @@ Biblioteca >> biblioteca_ID: unID [
 ]
 
 { #category : #'as yet unclassified' }
+Biblioteca >> eliminarLibro:unLibro [
+colLibro remove:unLibro.
+self changed: colLibro .
+]
+
+{ #category : #'as yet unclassified' }
 Biblioteca >> getColLibro [
 
 ^colLibro.
