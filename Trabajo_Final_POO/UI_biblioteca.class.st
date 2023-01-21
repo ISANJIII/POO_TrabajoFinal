@@ -22,8 +22,10 @@ bibliotecaSistema position: registrarBibliteca position + (0@80).
 
 "ACCION BOTON"
 
-registrarBibliteca mouseAction: [ Registrar_Biblioteca crearOpcion_titulo: 'Registrar Biblioteca' ySistema: miSistema  ].
-bibliotecaSistema mouseAction: [ Elegir_Biblioteca crearOpcion_titulo: 'MODIFICAR BIBLIOTECA' ySistema: miSistema   ].
+registrarBibliteca mouseAction: [ Registrar_Biblioteca crearOpcion_titulo: 'Registrar Biblioteca' ySistema: miSistema.
+	self cerrar.  ].
+bibliotecaSistema mouseAction: [ Elegir_Biblioteca crearOpcion_titulo: 'MODIFICAR BIBLIOTECA' ySistema: miSistema .
+	self cerrar. ].
 ]
 
 { #category : #initialization }

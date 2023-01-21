@@ -88,9 +88,9 @@ minimizar  mouseAction: [ self minimizar  ].
 opcionA mouseAction: [ Registrar_Biblioteca crearOpcion_titulo: 'Agregar Bibliotecas y su material disponible' ySistema:miSistema.
 	].
 opcionB mouseAction: [ Registrar_Usuario crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
-opcionC mouseAction: [ OpcionC crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
+opcionC mouseAction: [ EliminarLibro crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionD mouseAction: [ OpcionD crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
-opcionE mouseAction: [ OpcionE crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
+opcionE mouseAction: [ Opciones_Biblioteca crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionF mouseAction: [ OpcionF crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionG mouseAction: [ OpcionG crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionH mouseAction: [ OpcionH crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].

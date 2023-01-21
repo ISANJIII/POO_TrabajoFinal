@@ -79,7 +79,7 @@ self addMorph: cerrar.
 cerrar position: 450@13.
 "registro de una coleccion"
 registro := MostrarRegistro crearRegistro_Dimension: 220@200 yPosicion: 260@40.
-registro setText:''.
+registro updateTextWith:''.
 registro borderWidth: 2.
 registro borderColor: Color pink.
 "accion de botones"
@@ -89,15 +89,13 @@ cerrar mouseAction: [ self cerrar ].
 { #category : #updating }
 VentanaO >> update: unObjeto [
 "en Smalltalk Pharo significa que un objeto se hace de solo lectura, lo que significa que su estado no se puede modificar. Una vez que un objeto se hace de solo lectura, cualquier intento de cambiar su estado generará una excepción."
-registro setText:''.
+registro updateTextWith:''.
 (unObjeto isEmpty) ifTrue: [
-	registro setText: 'Esperando datos'.]
+	registro updateTextWith: 'Esperando datos'.]
 ifFalse:[
 		colB contents: (miSistema colATexto: unObjeto). 
-		registro setText:(miSistema colATexto: unObjeto)asString.
+		registro updateTextWith:(miSistema colATexto: unObjeto)asString.
 		colB contents: (miSistema colATexto: unObjeto).
-		
-		
 ].
 self addMorph:registro.
 

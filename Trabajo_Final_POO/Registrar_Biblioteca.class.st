@@ -66,11 +66,13 @@ botonRegistrar mouseAction: [
 	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty )ifTrue:[
 		"ESTAN RELLENOS"
 		|biblio|.
-		biblio :=Biblioteca crearBiblioteca_id: datoIdentificador text asString  yDireccion:datoDireccion text asString yNombre: datoNombreE text asString yTelContacto:datoTelCont text asString   yRepresentante:datoNombRepresentante text asString  yDiasParaPrestar: datoDiasParaPrestar text asString.
-		miSistema agregarBiblioteca: biblio.
-		"AgregarLibro crearOpcion_titulo: 'AGREGAR LIBRO' yBiblioteca: biblio .
 		
-		self cerrar ."
+		biblio :=Biblioteca crearBiblioteca_id: (datoIdentificador input) yDireccion:(datoDireccion input)  yNombre: (datoNombreE input) yTelContacto:(datoTelCont input) yRepresentante:(datoNombRepresentante input ) yDiasParaPrestar: (datoDiasParaPrestar input).
+		"biblio :=Biblioteca crearBiblioteca_id: datoIdentificador text asString  yDireccion:datoDireccion text asString yNombre: datoNombreE text asString yTelContacto:datoTelCont text asString   yRepresentante:datoNombRepresentante text asString  yDiasParaPrestar: datoDiasParaPrestar text asString."
+		miSistema agregarBiblioteca: biblio.
+		Modificar_bibliteca crearOpcion_titulo:(datoNombreE input)   yBiblioteca: biblio .
+		
+		self cerrar .
 		].
 	 ].
 ]

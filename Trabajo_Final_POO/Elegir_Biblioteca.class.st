@@ -28,9 +28,9 @@ self addMorph: botonSeleccionar .
 
 (listaBibliteca isNotNil) ifTrue:[
     botonSeleccionar mouseAction: [
-|vent |.
-(lista at:(listaBibliteca  selectedItem)) changed.
-vent:=AgregarLibro crearOpcion_titulo:(listaBibliteca  selectedItem) yBiblioteca:(lista at:(listaBibliteca  selectedItem)).
+
+"(lista at:(listaBibliteca  selectedItem)) changed."
+Modificar_bibliteca crearOpcion_titulo:(listaBibliteca  selectedItem) yBiblioteca:(lista at:(listaBibliteca  selectedItem)).
         self cerrar.
         ].
     ].

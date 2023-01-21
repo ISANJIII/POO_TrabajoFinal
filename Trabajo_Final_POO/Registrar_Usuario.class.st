@@ -58,6 +58,7 @@ botonRegistrar mouseAction: [
 			"no selecciono quiere ser usuario no plus"
 usuario := Usuario crearUsuario_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input ).
 			miSistema agregarUsuario: usuario .
+			self cerrar.
 			].	
 		].
 	

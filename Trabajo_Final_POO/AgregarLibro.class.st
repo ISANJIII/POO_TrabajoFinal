@@ -1,6 +1,6 @@
 Class {
 	#name : #AgregarLibro,
-	#superclass : #VentanaO,
+	#superclass : #'Opciones_Biblioteca',
 	#instVars : [
 		'datoNombre',
 		'datoEditorial',
@@ -10,21 +10,8 @@ Class {
 		'idBuscar',
 		'reg'
 	],
-	#classVars : [
-		'biblioRe'
-	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
-
-{ #category : #'as yet unclassified' }
-AgregarLibro class >> crearOpcion_titulo: tit yBiblioteca: b [
-|opcion|.
-opcion:=self new.
-opcion recibirBiblioteca: b.
-opcion agregarTitulo: tit.
-opcion openCenteredInWorld.
-
-]
 
 { #category : #'as yet unclassified' }
 AgregarLibro >> agregarCampos [ 
@@ -72,10 +59,6 @@ titulo4 position: tipoLibro position-(0@20).
 
 { #category : #accessing }
 AgregarLibro >> botonAgregar [
-
-|tada|.
-tada:=StringMorph new.
-tada contents:'Libro agregado exitosamente'.
 
 botonAgregar :=BotonAccion crearBoton_nomb: 'AGREGAR' yDimension:100@20  yColor: Color pink.
 botonAgregar position: 385@415.
@@ -127,12 +110,8 @@ AgregarLibro >> initialize [
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
 biblioRe addDependent:self .
+
 self update: (biblioRe getColLibro ).
 self agregarCampos ;agregarTitulo;botonAgregar.
 
-]
-
-{ #category : #'as yet unclassified' }
-AgregarLibro >> recibirBiblioteca:biblio [ 
-biblioRe :=biblio .
 ]
