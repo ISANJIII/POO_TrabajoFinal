@@ -89,10 +89,10 @@ opcionA mouseAction: [ Registrar_Biblioteca crearOpcion_titulo: 'Agregar Bibliot
 	].
 opcionB mouseAction: [ Registrar_Usuario crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionC mouseAction: [ EliminarLibro crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
-opcionD mouseAction: [ OpcionD crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
+opcionD mouseAction: [ Opciones_Usuario crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionE mouseAction: [ Opciones_Biblioteca crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionF mouseAction: [ OpcionF crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
-opcionG mouseAction: [ OpcionG crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
+opcionG mouseAction: [ Opciones_Usuario crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 opcionH mouseAction: [ OpcionH crearOpcion_titulo: 'Registrar usuarios' ySistema:miSistema].
 ]
 

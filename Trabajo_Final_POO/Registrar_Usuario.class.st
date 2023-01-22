@@ -49,17 +49,18 @@ botonRegistrar mouseAction: [
 	((datoNombre isNotEmpty ) & (datoApellido isNotEmpty ) & (datoDni isNotEmpty) & (datoContraseña isNotEmpty))
 	"se rellenaron todos las casillas"
 	ifTrue:[
-		|usuario usuarioP|.
-		(cajaOpcion  verEstado ) ifTrue:[
+		|usuario|.
+		(cajaOpcion  verEstado) ifTrue:[
 			"selecciono osea quiere ser plus"
-			usuarioP := UsuarioPlus crearUsuarioPlus_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )  .
-				miSistema agregarUsuario: usuarioP .	
+			usuario :=(UsuarioPlus crearUsuarioPlus_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )).
+					
 			] ifFalse:[
 			"no selecciono quiere ser usuario no plus"
-usuario := Usuario crearUsuario_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input ).
-			miSistema agregarUsuario: usuario .
-			self cerrar.
+			usuario :=(Usuario crearUsuario_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )).
 			].	
+			miSistema agregarUsuario:usuario.
+			Acciones_Usuario crearOpcion_titulo: (usuario getNombre) yUsuario: usuario .
+self cerrar.
 		].
 	
 	].

@@ -15,15 +15,12 @@ texto:=StringMorph new.
 texto contents:'*SI TODOS LOS LIBROS YA FUERON ELIMINADOS SE CIERRA LA VENTANA'.
 "creo un Dictionary donde le paso el nombre de la biblioteca y la biblioteca a la cual corresponde el nombre"
 lista :=Dictionary new.
-
 (biblioRe getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
 	listaLibro:=SearchMorph new.
 listaLibro extent:410@60;searchList: (lista keys). 
 listaLibro position:40@250.
 listaLibro ghostText: 'SELECCIONA EL LIBRO A ELIMINAR'.
-	
-
-
+"ACCION BOTON"
 botonEliminar :=BotonAccion crearBoton_nomb: 'ELIMINAR' yDimension:100@20  yColor: Color pink.
 botonEliminar position: 385@415.
 texto position: botonEliminar position - (370@30).
@@ -42,10 +39,7 @@ botonEliminar mouseAction: [
 	listaLibro searchList: (lista keys). 
 	]ifFalse:[
 	"es nulo"
-	
-	(Delay forSeconds: 2) wait.
    self delete.
-	
 	].	
 	].
 

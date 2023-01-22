@@ -11,15 +11,21 @@ Class {
 
 { #category : #'as yet unclassified' }
 IniciarSesion_Usuario >> botonInciarSesion [
-|titulo2 titulo1 correcto incorrecto |.
-incorrecto:='Dni/contraseña incorrecto' asMorph.
-correcto :='✓'asMorph.
+|titulo2 titulo1 correcto incorrecto lista|.
+lista:=Dictionary new.
+(miSistema getColUsuario)do:[:usuario| lista at:(usuario getDni)put:usuario].
 
-titulo1:='Ingrese DNI' asMorph.
-titulo2 :='Ingrese contraseña' asMorph.
+incorrecto :=StringMorph new.
+correcto :=StringMorph new.
+titulo1:=StringMorph new.
+titulo2 :=StringMorph new.
+
+incorrecto contents:'Dni/contraseña incorrecto'.
+correcto  contents:'✓'.
+titulo1  contents:'Ingrese DNI'.
+titulo2 contents:'Ingrese contraseña'.
 
  botonSesion :=BotonAccion crearBoton_nomb: 'INICIAR SESION' yDimension:100@20  yColor:Color pink. 
- 
  botonSesion  position:385@415.
 
 ingresarDni :=IntroducirDato crearDialogo_tamanio: 140@45.
@@ -32,10 +38,18 @@ ingresarContraseña position: ingresarDni position + (0@80).
 titulo1 position:ingresarDni position - (0@30).
 titulo2 position:ingresarContraseña position - (0@30).
 
+botonSesion mouseAction: [
+	(miSistema iniciarSesion_Dni:(ingresarDni input )  yContraseña:(ingresarContraseña input )) ifTrue: [
+		"pudo ingresar a su cuenta"
+
+		
+		]ifFalse: [
+		self addMorph: incorrecto.incorrecto position:ingresarContraseña position + (0@80).  
+		].
+].
 
 
- botonSesion mouseAction: [ 
-	(miSistema iniciarSesion_Dni:((ingresarDni text)asString)  yContraseña:((ingresarContraseña  text)asString) )ifTrue: [self addMorph: correcto. correcto position:ingresarContraseña position + (0@80). ]ifFalse: [self addMorph: incorrecto. incorrecto position:ingresarContraseña position + (0@80).  ].].
+
 
 
 

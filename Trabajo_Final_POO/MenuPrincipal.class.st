@@ -19,8 +19,10 @@ self delete.
 MenuPrincipal >> fondoParaMiVentana [
 |fondo|.
 fondo:=(Form fromFileNamed: 'C:\Users\asdf\Downloads\marcos\marco1.png') asMorph.
+
 self extent: fondo extent.
 	self addMorphBack: fondo.
+
 ]
 
 { #category : #initialization }

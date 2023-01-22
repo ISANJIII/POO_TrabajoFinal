@@ -17,6 +17,11 @@ boton inicializadorBoton_name: nom yDimension:dimen  yColor: col.
 ]
 
 { #category : #'as yet unclassified' }
+BotonAccion >> cambiarNombre: unNombre [
+self label:unNombre.
+]
+
+{ #category : #'as yet unclassified' }
 BotonAccion >> inicializadorBoton_name: nomb yDimension: dim yColor:col [
 
 self label:nomb  .

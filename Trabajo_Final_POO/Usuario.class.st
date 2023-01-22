@@ -43,6 +43,7 @@ texto:='Nombre: ',nombre asString,String cr,'Apellido: ',apellido asString ,Stri
 { #category : #'as yet unclassified' }
 Usuario >> agregarBibliotecaInteres:unaBiblio [
 colBibibliotecaInter add:unaBiblio.
+self changed:colBibibliotecaInter.
 
 ]
 
@@ -55,6 +56,42 @@ Usuario >> buscarUsuario_Dni: num yContraseña: password [
 { #category : #'as yet unclassified' }
 Usuario >> cambiarTipo: tipoU [
 tipoUsuario :=tipoU .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getApellido [
+^apellido .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getBibliotecaInteres [
+^colBibibliotecaInter .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getContraseña [
+"lo implemente para cuando cree un nuevo usuario este mantenga la misma contraseña"
+^contraseña .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getDni [
+^dni.
+]
+
+{ #category : #Visualizadores }
+Usuario >> getNombre [ 
+^nombre .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getTipo [ 
+^tipoUsuario .
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> getTipoUsuario [
+^tipoUsuario.
 ]
 
 { #category : #'as yet unclassified' }

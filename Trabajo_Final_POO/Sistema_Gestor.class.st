@@ -76,6 +76,21 @@ colUsuario add:unUsuario.
 self changed: colUsuario.
 ]
 
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> cambiarTipoUsuario_Usuario:unUsuario [
+|nueva instancia|.
+"elimino la instancia de la coleccion"
+colUsuario remove:unUsuario.
+(unUsuario getTipo) ifTrue:[
+	"NO ES USUARIO PLUS"
+	colUsuario remove:unUsuario.
+	
+	]ifFalse:[
+	"ES USUARIO PLUS"
+	
+	].
+]
+
 { #category : #auxiliares }
 Sistema_Gestor >> colATexto: unaColeccion [
 
@@ -83,6 +98,11 @@ Sistema_Gestor >> colATexto: unaColeccion [
 	txt := ''.
 	unaColeccion do: [ :each | txt := txt , each aTexto , String cr ].
 	^ txt
+]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> devolverUsuario_dni: numDni [
+^ (colUsuario detect:[:usuario| ((usuario getDni))=numDni ])
 ]
 
 { #category : #'as yet unclassified' }
@@ -117,6 +137,7 @@ Sistema_Gestor >> iniciarSesion_Dni: numDni yContraseña:password [
 | exito |.
 exito:=false.
 colUsuario do:[:i| (i buscarUsuario_Dni: ((numDni)asString) yContraseña: ((password)asString)) ifTrue:  [exito:=true]].
-
 ^exito.
+"el metodo detect devuelve una referencia no una copia"
+"^ (colUsuario detect:[:usuario| (usuario buscarUsuario_Dni:((numDni)asString)  yContraseña:((password)asString))]). "
 ]
