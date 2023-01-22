@@ -6,9 +6,7 @@ Class {
 		'datoEditorial',
 		'datoAnioEd',
 		'botonAgregar',
-		'tipoLibro',
-		'idBuscar',
-		'reg'
+		'tipoLibro'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
@@ -70,7 +68,8 @@ botonAgregar mouseAction: [
 	((tipoLibro selectedItem)= 'Libro fisico')ifTrue:[
 
 		libro:=Libro crearLibro_nombre: (datoNombre input) yEditorial:(datoEditorial input)  yAnio_Edicion: (datoAnioEd input).
-	biblioRe agregarLibro: libro.	
+	BiblioRe agregarLibro: libro.
+"	BiblioRe crearPrestamo_Usuario: (Usuario crearU_nombre: 's' yApellido:'s'   yDni: 's'  yContraseña:'s'  ) yColLibro: 	libro."
 		].
 	((tipoLibro selectedItem)= 'Libro electronico')ifTrue:[
 		
@@ -96,18 +95,12 @@ tipoLibro clearArea .
 ].
 ]
 
-{ #category : #'as yet unclassified' }
-AgregarLibro >> idBiblioteca: unId [
-idBuscar :=unId .
-]
-
 { #category : #initialization }
 AgregarLibro >> initialize [ 
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
-biblioRe addDependent:self .
-
-self update: (biblioRe getColLibro ).
+BiblioRe addDependent: self.
+self update: (BiblioRe getColLibro ).
 self agregarCampos ;agregarTitulo;botonAgregar.
 
 ]

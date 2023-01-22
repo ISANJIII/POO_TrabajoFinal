@@ -26,7 +26,7 @@ biblioteca inicializadorBiblioteca_id: ident yDireccion: dir yNombre: nomb yTelC
 Biblioteca >> aTexto [ 
 |texto|.
 texto :=''.
-texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccion asString ,String cr,'Nombre Establecimiento: ',nombre asString,String cr,'Num Contacto: ',telefono_Contacto asString,String cr, 'Nombre Representante',nombre_Representante asString,String cr, 'Cantidad de libros registrados: ', (colLibro size)asString,String cr. 
+texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccion asString ,String cr,'Nombre Establecimiento: ',nombre asString,String cr,'Num Contacto: ',telefono_Contacto asString,String cr, 'Nombre Representante',nombre_Representante asString,String cr, 'Cantidad de libros registrados: ', (colLibro size)asString,String cr, 'Cantidad de prestamos: ', (colPrestamo  size)asString,String cr. 
 ^texto .
 ]
 
@@ -43,12 +43,30 @@ self changed:colLibro.
 Biblioteca >> agregarPrestamo: unPrestamo [
 
 colPrestamo add: unPrestamo .
+self changed:colPrestamo.
 ]
 
 { #category : #'as yet unclassified' }
 Biblioteca >> biblioteca_ID: unID [
 
 ^(unID = identificador).
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> crearPrestamo_Usuario: unUsuario yColLibro: unaColLibro [
+|cLibro cAudioLibro|.
+"separo los libros general y AudioLibro"
+cLibro:=colLibro select:[:libro| libro getTipo].
+cAudioLibro:=colLibro reject:[:libro| libro getTipo].
+""
+self metodoAux_Crear: cLibro yUsuario: unUsuario .
+
+(unUsuario getTipo  )ifFalse:[
+	"es plus"
+	self metodoAux_Crear: cAudioLibro yUsuario: unUsuario .
+	].
+
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -74,6 +92,11 @@ Biblioteca >> getNombreEstablecimiento [
 ]
 
 { #category : #'as yet unclassified' }
+Biblioteca >> getPrestamo [
+^ colPrestamo .
+]
+
+{ #category : #'as yet unclassified' }
 Biblioteca >> inicializadorBiblioteca_id: ident yDireccion: dir yNombre: nomb yTelContacto: numC yRepresentante: nomR yDiasParaPrestar: dPrestar [
 colLibro :=OrderedCollection new.
 colPrestamo :=OrderedCollection new.
@@ -84,4 +107,35 @@ telefono_Contacto := numC.
 nombre_Representante := nomR .
 diasParaPrestar :=dPrestar.
 
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> metodoAux_Crear:cLibro yUsuario:unUsuario [
+|nuevoPrest|.
+((cLibro notEmpty ) & ((cLibro size)<=5))ifTrue:[
+nuevoPrest :=Prestamo crearP_ColLibro: cLibro  yFPrest:(Date today) yUsuario: unUsuario .
+self agregarPrestamo: nuevoPrest.	
+	].
+
+
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> registrarPrestamoUsuario: unUsuario clibros: unaColLibros [ 
+|instancia|.
+(unUsuario verMulta )ifFalse:[
+	"esto deveria devolver nulo para que pueda realizar la promo"
+	colPrestamo ifNil:[
+		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .	
+		]ifNotNil:[
+		"si ver estadoUsuario es true no puede hacer prestamo"
+	instancia :=((colPrestamo)detect:[:prest|(prest verEstadoUsuario: unUsuario)]).	
+	(instancia)ifNil:[
+		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	
+		].	
+].
+		 
+	
+	
+	
 ]

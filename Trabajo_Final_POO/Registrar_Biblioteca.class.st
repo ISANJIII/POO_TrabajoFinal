@@ -14,6 +14,27 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+Registrar_Biblioteca >> agregarBotones [
+
+botonRegistrar := BotonAccion crearBoton_nomb: 'REGISTRAR' yDimension:100@20  yColor: Color pink.
+self addMorph:botonRegistrar.
+botonRegistrar position: 385@415.
+"accion del boton"
+botonRegistrar mouseAction: [ 
+	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty )ifTrue:[
+		"ESTAN RELLENOS"
+		|biblio|.
+		
+		biblio :=Biblioteca crearBiblioteca_id: (datoIdentificador input) yDireccion:(datoDireccion input)  yNombre: (datoNombreE input) yTelContacto:(datoTelCont input) yRepresentante:(datoNombRepresentante input ) yDiasParaPrestar: (datoDiasParaPrestar input).
+		MiSistema agregarBiblioteca: biblio.
+		Modificar_bibliteca crearOpcion_titulo:(datoNombreE input)   yBiblioteca: biblio .
+		
+		self cerrar .
+		].
+	 ].
+]
+
+{ #category : #'as yet unclassified' }
 Registrar_Biblioteca >> agregarTitulos [
 |titulo1 titulo2 titulo3 titulo4 titulo5 titulo6|.
 titulo1 :='Ingrese el identificador' asMorph .
@@ -55,35 +76,13 @@ self
 addMorph:datoIdentificador;addMorph:datoDireccion;addMorph:datoNombreE;addMorph:datoTelCont;addMorph:datoNombRepresentante;addMorph:datoDiasParaPrestar.
 ]
 
-{ #category : #'as yet unclassified' }
-Registrar_Biblioteca >> botonRegistro [
-
-botonRegistrar := BotonAccion crearBoton_nomb: 'REGISTRAR' yDimension:100@20  yColor: Color pink.
-self addMorph:botonRegistrar.
-botonRegistrar position: 385@415.
-"accion del boton"
-botonRegistrar mouseAction: [ 
-	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty )ifTrue:[
-		"ESTAN RELLENOS"
-		|biblio|.
-		
-		biblio :=Biblioteca crearBiblioteca_id: (datoIdentificador input) yDireccion:(datoDireccion input)  yNombre: (datoNombreE input) yTelContacto:(datoTelCont input) yRepresentante:(datoNombRepresentante input ) yDiasParaPrestar: (datoDiasParaPrestar input).
-		"biblio :=Biblioteca crearBiblioteca_id: datoIdentificador text asString  yDireccion:datoDireccion text asString yNombre: datoNombreE text asString yTelContacto:datoTelCont text asString   yRepresentante:datoNombRepresentante text asString  yDiasParaPrestar: datoDiasParaPrestar text asString."
-		miSistema agregarBiblioteca: biblio.
-		Modificar_bibliteca crearOpcion_titulo:(datoNombreE input)   yBiblioteca: biblio .
-		
-		self cerrar .
-		].
-	 ].
-]
-
 { #category : #initialization }
 Registrar_Biblioteca >> initialize [
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
 self añadorCampos;agregarTitulos .
-miSistema addDependent: self.
+MiSistema addDependent: self.
 "cargo los usuarios que tengo registrado"
-self update: (miSistema getBibliotecas).
-self botonRegistro .
+self update: (MiSistema getBibliotecas).
+self agregarBotones .
 ]

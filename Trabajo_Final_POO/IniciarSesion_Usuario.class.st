@@ -10,10 +10,10 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-IniciarSesion_Usuario >> botonInciarSesion [
+IniciarSesion_Usuario >> agregarBotones [
 |titulo2 titulo1 correcto incorrecto lista|.
 lista:=Dictionary new.
-(miSistema getColUsuario)do:[:usuario| lista at:(usuario getDni)put:usuario].
+(MiSistema getColUsuario)do:[:usuario| lista at:(usuario getDni)put:usuario].
 
 incorrecto :=StringMorph new.
 correcto :=StringMorph new.
@@ -39,12 +39,13 @@ titulo1 position:ingresarDni position - (0@30).
 titulo2 position:ingresarContraseña position - (0@30).
 
 botonSesion mouseAction: [
-	(miSistema iniciarSesion_Dni:(ingresarDni input )  yContraseña:(ingresarContraseña input )) ifTrue: [
+	(MiSistema iniciarSesion_Dni:(ingresarDni input )  yContraseña:(ingresarContraseña input )) ifTrue: [
 		"pudo ingresar a su cuenta"
-Acciones_Usuario crearOpcion_titulo:'Opciones'  yUsuario: (miSistema devolverUsuario_dni:(ingresarDni input) ).
+Acciones_Usuario crearOpcion_titulo:'Opciones' yUsuario: (MiSistema devolverUsuario_dni:(ingresarDni input) ).
 		self cerrar.
 		]ifFalse: [
-		self addMorph: incorrecto.incorrecto position:ingresarContraseña position + (0@80).  
+		self addMorph: incorrecto.
+		incorrecto position:ingresarContraseña position + (0@80).  
 		].
 ].
 
@@ -60,6 +61,6 @@ Acciones_Usuario crearOpcion_titulo:'Opciones'  yUsuario: (miSistema devolverUsu
 IniciarSesion_Usuario >> initialize [ 
 super initialize.
 self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco3.png'.
-self botonInciarSesion .
+self agregarBotones .
 
 ]

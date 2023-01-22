@@ -2,19 +2,18 @@ Class {
 	#name : #'Elegir_Biblioteca',
 	#superclass : #VentanaO,
 	#instVars : [
-		'listaBibliteca',
 		'botonSeleccionar'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
 
-{ #category : #'as yet unclassified' }
-Elegir_Biblioteca >> botonLista [
-|lista|.
+{ #category : #accessing }
+Elegir_Biblioteca >> agregarBotones [
+|lista listaBibliteca|.
 "creo un diccionario y va estar compuesto por el nombre de la biblioteca y la instancia de la biblioteca"
 lista:=Dictionary new.
 
-(miSistema getBibliotecas) do:[:biblioteca| lista at:(biblioteca getNombreEstablecimiento)put:biblioteca].
+(MiSistema getBibliotecas) do:[:biblioteca| lista at:(biblioteca getNombreEstablecimiento)put:biblioteca].
 
 listaBibliteca:=SearchMorph new.
 listaBibliteca extent:400@60;searchList: (lista keys). 
@@ -25,7 +24,7 @@ botonSeleccionar :=BotonAccion crearBoton_nomb: 'SELECCIONAR' yDimension:100@20 
 botonSeleccionar position: 385@415.
 self addMorph:listaBibliteca.
 self addMorph: botonSeleccionar .
-
+"accion"
 (listaBibliteca isNotNil) ifTrue:[
     botonSeleccionar mouseAction: [
 
@@ -39,5 +38,5 @@ Modificar_bibliteca crearOpcion_titulo:(listaBibliteca  selectedItem) yBibliotec
 Elegir_Biblioteca >> initialize [ 
 super initialize .
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
-self botonLista .
+self agregarBotones .
 ]

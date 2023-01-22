@@ -2,7 +2,7 @@ Class {
 	#name : #'Opciones_Biblioteca',
 	#superclass : #VentanaO,
 	#classVars : [
-		'biblioRe'
+		'BiblioRe'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
@@ -24,5 +24,5 @@ self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco6.png'.
 
 { #category : #'as yet unclassified' }
 Opciones_Biblioteca >> recibirBiblioteca:biblio [ 
-biblioRe :=biblio .
+BiblioRe :=biblio .
 ]

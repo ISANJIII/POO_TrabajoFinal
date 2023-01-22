@@ -2,7 +2,7 @@ Class {
 	#name : #'Opciones_Usuario',
 	#superclass : #VentanaO,
 	#classVars : [
-		'usuarioRecibido'
+		'UsuarioRecibido'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
@@ -11,7 +11,7 @@ Class {
 Opciones_Usuario class >> crearOpcion_titulo: tit yUsuario: us [ 
 |opcion|.
 opcion:=self new.
-usuarioRecibido :=us.
+UsuarioRecibido :=us.
 opcion agregarTitulo: tit.
 opcion openCenteredInWorld.
 ]

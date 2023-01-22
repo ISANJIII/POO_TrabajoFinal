@@ -7,11 +7,10 @@ Class {
 	#instVars : [
 		'cerrar',
 		'registro',
-		'listaRegistro',
-		'colB'
+		'col'
 	],
 	#classVars : [
-		'miSistema'
+		'MiSistema'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
@@ -36,8 +35,13 @@ opcion openInWorld .
 ]
 
 { #category : #'as yet unclassified' }
+VentanaO >> agregarBotones [
+	^ self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
 VentanaO >> agregarSistema: sis [
-miSistema :=sis.
+MiSistema :=sis.
 ]
 
 { #category : #'as yet unclassified' }
@@ -48,11 +52,6 @@ VentanaO >> agregarTitulo: tit [
 	self addMorph: titulo.
 	titulo position: 200@15.
 	
-]
-
-{ #category : #'as yet unclassified' }
-VentanaO >> botonRegistro [ 
-^ self subclassResponsibility.
 ]
 
 { #category : #propios }
@@ -72,13 +71,13 @@ self extent: fondo extent.
 VentanaO >> initialize [ 
 super initialize .
 ""
-colB:=StringMorph new.
+col:=StringMorph new.
 ""
 cerrar := BotonAccion crearBoton_nomb: ' X' yDimension: 25@25 yColor: Color white .
 self addMorph: cerrar.
 cerrar position: 450@13.
 "registro de una coleccion"
-registro := MostrarRegistro crearRegistro_Dimension: 220@200 yPosicion: 260@40.
+registro := MostrarRegistro crearRegistro_Dimension: 220@200 yPosicion: (self position +(260@40)).
 registro updateTextWith:''.
 registro borderWidth: 2.
 registro borderColor: Color pink.
@@ -93,9 +92,9 @@ registro updateTextWith:''.
 (unObjeto isEmpty) ifTrue: [
 	registro updateTextWith: 'Esperando datos'.]
 ifFalse:[
-		colB contents: (miSistema colATexto: unObjeto). 
-		registro updateTextWith:(miSistema colATexto: unObjeto)asString.
-		colB contents: (miSistema colATexto: unObjeto).
+		col contents: (MiSistema colATexto: unObjeto). 
+		registro updateTextWith:(MiSistema colATexto: unObjeto)asString.
+		col contents: (MiSistema colATexto: unObjeto).
 ].
 self addMorph:registro.
 

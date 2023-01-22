@@ -18,14 +18,7 @@ Usuario class >> crearU_nombre: nomb yApellido:ape yDni:numDni yContraseña:pass
 |usuario|.
 usuario :=self new.
 usuario inicializadorUsuario_nombre: nomb yApellido:ape yDni:numDni yContraseña:pass.
-^usuario .
-]
-
-{ #category : #'as yet unclassified' }
-Usuario class >> crearUsuario_nombre: nomb yApellido:ape yDni:numDni yContraseña:pass [
-|usuario|.
-usuario :=self new.
-usuario inicializadorUsuario_nombre: nomb yApellido:ape yDni:numDni yContraseña:pass.
+usuario cambiarTipo: true.
 ^usuario .
 ]
 
@@ -34,9 +27,8 @@ Usuario >> aTexto [
 |texto tipo|.
 tipo:='USUARIO PLUS'.
 tipoUsuario ifTrue: [ tipo:='USUARIO NO PLUS' ].
-
-
 texto:='Nombre: ',nombre asString,String cr,'Apellido: ',apellido asString ,String cr,'DNI: ',dni asString,String cr,tipo ,String cr,'Cantidad de Bibliotecas Agregadas: ',(colBibibliotecaInter size)asString,String cr. 
+self changed.
 ^texto .
 ]
 
@@ -63,6 +55,7 @@ Usuario >> buscarUsuario_Dni: num yContraseña: password [
 { #category : #'as yet unclassified' }
 Usuario >> cambiarTipo: tipoU [
 tipoUsuario :=tipoU .
+self changed.
 ]
 
 { #category : #'as yet unclassified' }
@@ -93,11 +86,6 @@ Usuario >> getNombre [
 
 { #category : #'as yet unclassified' }
 Usuario >> getTipo [ 
-^tipoUsuario .
-]
-
-{ #category : #'as yet unclassified' }
-Usuario >> getTipoUsuario [
 ^tipoUsuario.
 ]
 
@@ -108,15 +96,25 @@ nombre := nomb.
 apellido :=ape.
 dni :=numDni .
 contraseña :=pass .
-"usuario no plus tiene tipo usuario true"
-tipoUsuario :=true.
 "no esta multado"
 multado :=false.
 ]
 
-{ #category : #toString }
-Usuario >> toString [
-|texto|.
-texto:='Nombre: ',nombre,String cr,'Apellido: ',apellido ,String cr,'DNI: ',dni,String cr,'Bibliotecas de interes:',(colBibibliotecaInter size),String cr. 
-^texto .
+{ #category : #'as yet unclassified' }
+Usuario >> puedeRealizarPrestamo: numDni [
+|puedeRealizarPrest|.
+puedeRealizarPrest :=false.
+"este metodo se usa para saber si el numDni que viene por parametro que se lo envia la clase prestamo es igual al dni del usuario... osea si es igual es porque ya realizo un prestamo"
+(dni = numDni )ifTrue: [ puedeRealizarPrest :=true ].
+^puedeRealizarPrest .
+
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> verMulta [
+"El sistema multa con una suspensión de k dias al usuario que se retrasa en la devolución de los libros, es decir que por esa cantidad de días no podrá solicitar nuevos préstamos.
+si es falso es porque no esta multado.
+"
+
+^multado .
 ]

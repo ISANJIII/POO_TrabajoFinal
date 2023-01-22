@@ -12,44 +12,45 @@ Class {
 
 { #category : #'as yet unclassified' }
 Acciones_Usuario >> agregarBotones [ 
-|text1 |.
-text1:='NO PLUS' .
+|nota|.
 
-(usuarioRecibido getTipo) ifTrue:[
-	"si es verdadero es no plus"
-	text1:='PLUS' 
-	].
+nota:=StringMorph new.
+nota contents:'CUANDO SE CAMBIA DE USUARIO A USUARIO PLUS DEBE VOLVER A INICIAR SESION'.
+botonTipo :=BotonAccion crearBoton_nomb: ('CAMBIAR EL TIPO DE USUARIO') yDimension:400@50  yColor: Color pink.
 botonAgregar :=BotonAccion crearBoton_nomb: 'AGREGAR BIBLIOTECA' yDimension:400@50  yColor: Color pink.
-botonTipo :=BotonAccion crearBoton_nomb: ('CAMBIAR A USUARIO ',text1) yDimension:400@50  yColor: Color pink.
+
 botonPrestamo :=BotonAccion crearBoton_nomb: 'REALIZAR PRESTAMO' yDimension:400@50  yColor: Color pink.
 botonDevolver :=BotonAccion crearBoton_nomb: 'DEVOLVER PRESTAMO' yDimension:400@50  yColor: Color pink.
 
 botonAgregar position:50@70.
-botonTipo position: botonAgregar position +(0@80).
-botonPrestamo position: botonTipo position +(0@80).
+botonPrestamo position: botonAgregar position +(0@80).
 botonDevolver  position: botonPrestamo position +(0@80).
-self addMorph:botonAgregar.
-
-"si es cero es porque es un usuario nuevo"
-((usuarioRecibido getBibliotecaInteres)isEmpty)ifFalse:[
-	self addMorph:botonTipo;addMorph:botonPrestamo;addMorph:botonDevolver
-	].
-
-botonAgregar mouseAction: [  Agregar_BibliotecaInteres crearOpcion_titulo: ('Agregar biblioteca de interes a ',usuarioRecibido getNombre)  yUsuario: usuarioRecibido.
+botonTipo position: botonDevolver position +(0@80).
+nota position:botonTipo position +(0@80).
+	self addMorph:botonAgregar; addMorph:botonTipo;addMorph:botonPrestamo;addMorph:botonDevolver;addMorph:nota.
+	
+botonAgregar mouseAction: [  Agregar_BibliotecaInteres crearOpcion_titulo: ('Agregar biblioteca de interes a ',UsuarioRecibido getNombre)  yUsuario: UsuarioRecibido.
+	self changed:UsuarioRecibido.
+	
 	].
 "si quiero cambiar el tipo"
 botonTipo mouseAction: [
-"	miSistema cambiarTipoUsuario_Usuario: usuarioRecibido ."
-	
-	self cerrar.
-	 
+	MiSistema cambiarTipoUsuario_Usuario: UsuarioRecibido .
+	self cerrar
 		 ].
+	botonPrestamo mouseAction: [
+		Realizar_Prestamo crearOpcion_titulo: ('Prestamo')  yUsuario: UsuarioRecibido.
+		 self cerrar.
+		].
+	
 	
 
 ]
 
 { #category : #initialization }
 Acciones_Usuario >> initialize [ 
+
 super initialize.
-self agregarBotones .
+self agregarBotones.
+
 ]

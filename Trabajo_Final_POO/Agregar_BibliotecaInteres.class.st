@@ -2,20 +2,19 @@ Class {
 	#name : #'Agregar_BibliotecaInteres',
 	#superclass : #'Opciones_Usuario',
 	#instVars : [
-		'botonAgregar',
-		'listaBiblioteca'
+		'botonAgregar'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
 
 { #category : #accessing }
 Agregar_BibliotecaInteres >> botonAgregar [
-|lista |.
+|lista listaBiblioteca|.
 lista:=Dictionary new.
 "creo un dictionary "
 listaBiblioteca :=SearchMorph new.
 "este dictionary va estar compuesto por bibliotecas del sistema"
-(miSistema getBibliotecas)do:[:biblioteca| lista at:(biblioteca getNombreEstablecimiento  )put:biblioteca].
+(MiSistema getBibliotecas)do:[:biblioteca| lista at:(biblioteca getNombreEstablecimiento  )put:biblioteca].
 listaBiblioteca extent:410@60;searchList: (lista keys). 
 listaBiblioteca position:40@250.
 listaBiblioteca ghostText: 'SELECCIONA UNA BIBLIOTECA'.
@@ -29,7 +28,7 @@ self addMorph:botonAgregar.
 botonAgregar mouseAction: [ 
 	"veo si se marco una opcion"
 	(listaBiblioteca selectedItem isNotNil)ifTrue:[
-		usuarioRecibido agregarBibliotecaInteres: (lista at:(listaBiblioteca selectedItem)).
+		UsuarioRecibido agregarBibliotecaInteres: (lista at:(listaBiblioteca selectedItem)).
 		lista removeKey: (listaBiblioteca selectedItem).
 		listaBiblioteca searchList: (lista keys).
 		]ifFalse:[
@@ -46,7 +45,7 @@ botonAgregar mouseAction: [
 Agregar_BibliotecaInteres >> initialize [ 
 
 super initialize .
-usuarioRecibido  addDependent:self .
-self update:(usuarioRecibido getBibliotecaInteres).
+UsuarioRecibido  addDependent:self .
+self update:(UsuarioRecibido getBibliotecaInteres).
 self botonAgregar .
 ]

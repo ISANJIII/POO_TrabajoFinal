@@ -2,20 +2,19 @@ Class {
 	#name : #EliminarLibro,
 	#superclass : #'Opciones_Biblioteca',
 	#instVars : [
-		'botonEliminar',
-		'listaLibro'
+		'botonEliminar'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
 
 { #category : #'as yet unclassified' }
 EliminarLibro >> botonEliminar [
-|lista texto|.
+|lista listaLibro texto|.
 texto:=StringMorph new.
 texto contents:'*SI TODOS LOS LIBROS YA FUERON ELIMINADOS SE CIERRA LA VENTANA'.
 "creo un Dictionary donde le paso el nombre de la biblioteca y la biblioteca a la cual corresponde el nombre"
 lista :=Dictionary new.
-(biblioRe getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
+(BiblioRe getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
 listaLibro:=SearchMorph new.
 listaLibro extent:410@60;searchList: (lista keys). 
 listaLibro position:40@250.
@@ -34,7 +33,7 @@ botonEliminar mouseAction: [
 	(listaLibro selectedItem isNotNil)ifTrue:[
 		"veo el item seleccionado no es nulo"
 	
-	biblioRe eliminarLibro: (lista at:(listaLibro  selectedItem)).
+	BiblioRe eliminarLibro: (lista at:(listaLibro  selectedItem)).
 	lista removeKey: (listaLibro  selectedItem)  . 
 	listaLibro searchList: (lista keys). 
 	]ifFalse:[
@@ -51,8 +50,8 @@ botonEliminar mouseAction: [
 EliminarLibro >> initialize [
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco4.png'.
-biblioRe addDependent:self .
-self update: (biblioRe getColLibro ).
+BiblioRe addDependent: self.
+self update: (BiblioRe getColLibro ).
 self botonEliminar .
 
 ]

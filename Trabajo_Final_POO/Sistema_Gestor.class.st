@@ -15,9 +15,9 @@ Sistema_Gestor class >> crearSistemaAUsar [
 sis:= self new.
 sis inicializadorSistema_Gestor.
 "creo usuarios plus y no plus"
-usuario1:=UsuarioPlus crearUsuarioPlus_nombre: 'Messi' yApellido:'Cuccittini'  yDni:'10000000'  yContraseña:'12345' .
+usuario1:=UsuarioPlus crearUPlus_nombre: 'Messi' yApellido:'Cuccittini'  yDni:'10000000'  yContraseña:'12345' .
 sis agregarUsuario: usuario1 .
-usuario2:=UsuarioPlus crearUsuarioPlus_nombre: 'Facu' yApellido:'Munos'  yDni:'10000001'  yContraseña:'12345' .
+usuario2:=UsuarioPlus crearUPlus_nombre: 'Facu' yApellido:'Munos'  yDni:'10000001'  yContraseña:'12345' .
 sis agregarUsuario: usuario2 .
 usuario3:=Usuario crearU_nombre: 'Seba' yApellido:'Iovaldo'  yDni:'10000002'  yContraseña:'12345' .
 sis agregarUsuario: usuario3 .
@@ -80,28 +80,16 @@ self changed: colUsuario.
 Sistema_Gestor >> cambiarTipoUsuario_Usuario:usuarioViejo [ 
 |usuarioNuevo|.
 (usuarioViejo getTipo)ifTrue:[
-    "NO ES USUARIO PLUS"
-    usuarioNuevo :=UsuarioPlus crearUsuarioPlus_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    "NO ES USUARIO PLUS entonces pasamos a usuario no plus"
+    usuarioNuevo :=UsuarioPlus crearUPlus_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
     ]ifFalse:[
     "ES USUARIO PLUS"
-    usuarioNuevo :=Usuario crearUsuario_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    usuarioNuevo :=Usuario crearU_nombre: (usuarioViejo getNombre)  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni)  yContraseña:(usuarioViejo getContraseña).
     ].
 usuarioNuevo actualizarColBiblioteca: (usuarioViejo getBibliotecaInteres).
 colUsuario remove:usuarioViejo .
 self agregarUsuario: usuarioNuevo.
-	
-"
-(usuarioViejo getTipo)ifTrue:[
-    ""NO ES USUARIO PLUS""
-    usuarioNuevo :=UsuarioPlus crearUsuarioPlus_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
-    ]ifFalse:[
-    ""ES USUARIO PLUS""
-    usuarioNuevo :=Usuario crearUsuario_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
-    ].
-usuarioNuevo actualizarColBiblioteca: (usuarioViejo getBibliotecaInteres).
-colUsuario remove:usuarioViejo .
-self agregarUsuario: usuarioNuevo.
-"
+
 ]
 
 { #category : #auxiliares }
