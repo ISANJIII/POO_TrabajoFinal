@@ -41,6 +41,13 @@ texto:='Nombre: ',nombre asString,String cr,'Apellido: ',apellido asString ,Stri
 ]
 
 { #category : #'as yet unclassified' }
+Usuario >> actualizarColBiblioteca: unaCol [
+"esto lo hago para cuando hago un cambio de usuario este mantenga la misma coleccion de biblioteca que tuvo interes"
+colBibibliotecaInter:=unaCol .
+
+]
+
+{ #category : #'as yet unclassified' }
 Usuario >> agregarBibliotecaInteres:unaBiblio [
 colBibibliotecaInter add:unaBiblio.
 self changed:colBibibliotecaInter.

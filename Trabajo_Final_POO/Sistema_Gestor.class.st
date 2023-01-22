@@ -77,18 +77,31 @@ self changed: colUsuario.
 ]
 
 { #category : #'as yet unclassified' }
-Sistema_Gestor >> cambiarTipoUsuario_Usuario:unUsuario [
-|nueva instancia|.
-"elimino la instancia de la coleccion"
-colUsuario remove:unUsuario.
-(unUsuario getTipo) ifTrue:[
-	"NO ES USUARIO PLUS"
-	colUsuario remove:unUsuario.
+Sistema_Gestor >> cambiarTipoUsuario_Usuario:usuarioViejo [ 
+|usuarioNuevo|.
+(usuarioViejo getTipo)ifTrue:[
+    "NO ES USUARIO PLUS"
+    usuarioNuevo :=UsuarioPlus crearUsuarioPlus_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    ]ifFalse:[
+    "ES USUARIO PLUS"
+    usuarioNuevo :=Usuario crearUsuario_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    ].
+usuarioNuevo actualizarColBiblioteca: (usuarioViejo getBibliotecaInteres).
+colUsuario remove:usuarioViejo .
+self agregarUsuario: usuarioNuevo.
 	
-	]ifFalse:[
-	"ES USUARIO PLUS"
-	
-	].
+"
+(usuarioViejo getTipo)ifTrue:[
+    ""NO ES USUARIO PLUS""
+    usuarioNuevo :=UsuarioPlus crearUsuarioPlus_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    ]ifFalse:[
+    ""ES USUARIO PLUS""
+    usuarioNuevo :=Usuario crearUsuario_nombre: (usuarioViejo getNombre )  yApellido: (usuarioViejo getApellido  ) yDni:(usuarioViejo getDni  )  yContraseña:(usuarioViejo getContraseña).
+    ].
+usuarioNuevo actualizarColBiblioteca: (usuarioViejo getBibliotecaInteres).
+colUsuario remove:usuarioViejo .
+self agregarUsuario: usuarioNuevo.
+"
 ]
 
 { #category : #auxiliares }
