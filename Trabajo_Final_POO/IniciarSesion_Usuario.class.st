@@ -41,8 +41,8 @@ titulo2 position:ingresarContraseña position - (0@30).
 botonSesion mouseAction: [
 	(miSistema iniciarSesion_Dni:(ingresarDni input )  yContraseña:(ingresarContraseña input )) ifTrue: [
 		"pudo ingresar a su cuenta"
-
-		
+Acciones_Usuario crearOpcion_titulo:'Opciones'  yUsuario: (miSistema devolverUsuario_dni:(ingresarDni input) ).
+		self cerrar.
 		]ifFalse: [
 		self addMorph: incorrecto.incorrecto position:ingresarContraseña position + (0@80).  
 		].

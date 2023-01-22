@@ -29,7 +29,7 @@ self addMorph:botonAgregar.
 	].
 
 botonAgregar mouseAction: [  Agregar_BibliotecaInteres crearOpcion_titulo: ('Agregar biblioteca de interes a ',usuarioRecibido getNombre)  yUsuario: usuarioRecibido  .
-	self cerrar.].
+	].
 
 ]
 

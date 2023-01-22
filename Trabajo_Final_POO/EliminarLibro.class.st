@@ -16,7 +16,7 @@ texto contents:'*SI TODOS LOS LIBROS YA FUERON ELIMINADOS SE CIERRA LA VENTANA'.
 "creo un Dictionary donde le paso el nombre de la biblioteca y la biblioteca a la cual corresponde el nombre"
 lista :=Dictionary new.
 (biblioRe getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
-	listaLibro:=SearchMorph new.
+listaLibro:=SearchMorph new.
 listaLibro extent:410@60;searchList: (lista keys). 
 listaLibro position:40@250.
 listaLibro ghostText: 'SELECCIONA EL LIBRO A ELIMINAR'.
