@@ -94,11 +94,10 @@ self agregarUsuario: usuarioNuevo.
 
 { #category : #auxiliares }
 Sistema_Gestor >> colATexto: unaColeccion [
-
-	| txt |
-	txt := ''.
-	unaColeccion do: [ :each | txt := txt , each aTexto , String cr ].
-	^ txt
+	^ String streamContents: [:s | 
+		unaColeccion do: [:each | 
+			s nextPutAll: each aTexto.
+			s nextPut: Character cr]].
 ]
 
 { #category : #'as yet unclassified' }

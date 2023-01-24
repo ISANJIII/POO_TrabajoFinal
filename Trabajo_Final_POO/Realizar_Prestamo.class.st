@@ -28,7 +28,8 @@ self addMorph:botonPrestamo.
 
 (listaBInteres isNotNil)ifTrue:[
 	botonPrestamo mouseAction: [  
-		self removeMorph: botonPrestamo;removeMorph: listaBInteres  .
+		self removeMorph: botonPrestamo;removeMorph: listaBInteres .
+	"	Biblioteca_Prestamo crearOpcion_titulo: 'biblio' yBiblioteca:(dictionary at:(listaBInteres  selectedItem))  yUsuario: UsuarioRecibido ."
 		self realizarPrestamo_bibliteca: (dictionary at:(listaBInteres  selectedItem)).
 	
 		]
@@ -39,18 +40,26 @@ self addMorph:botonPrestamo.
 { #category : #initialization }
 Realizar_Prestamo >> initialize [ 
 super initialize .
-registro position:(760@500).
+"registro position:(760@500)."
 self agregarBotones .
 
 ]
 
 { #category : #'as yet unclassified' }
 Realizar_Prestamo >> realizarPrestamo_bibliteca: biblio [
-|lista listaLibro colLibroElegidos |.
+|lista listaLibro colLibroElegidos a b|.
+a:=StringMorph new.
+a contents:'nulo'.
+b:=StringMorph new.
+b contents:'no nulo'.
 "creo un Dictionary donde le paso el nombre de la biblioteca y la biblioteca a la cual corresponde el nombre" 
-self update:(biblio getPrestamo) .
 lista :=Dictionary new.
 colLibroElegidos :=OrderedCollection new.
+"colLibroElegidos :=nil."
+(colLibroElegidos)ifNil:[self addMorph:a]ifNotNil: [ self addMorph:b ].
+
+colLibroElegidos addDependent: self.
+self update:colLibroElegidos.
 (biblio getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
 listaLibro:=SearchMorph new.
 listaLibro extent:410@60;searchList: (lista keys). 
@@ -70,7 +79,8 @@ self addMorph:elegirLibro;addMorph:listaLibro;addMorph:terminarElegir.
 elegirLibro mouseAction: [  
 		"veo el item seleccionado no es nulo"
 	(listaLibro selectedItem isNotNil)ifTrue:[
-	colLibroElegidos add:(lista at:( listaLibro selectedItem )).
+	colLibroElegidos add:(lista at:(listaLibro selectedItem )).
+	self changed: colLibroElegidos .
 	lista removeKey: (listaLibro  selectedItem)  . 
 	listaLibro searchList: (lista keys). 
 	].].

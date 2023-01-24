@@ -88,12 +88,11 @@ cerrar mouseAction: [ self cerrar ].
 { #category : #updating }
 VentanaO >> update: unObjeto [
 "en Smalltalk Pharo significa que un objeto se hace de solo lectura, lo que significa que su estado no se puede modificar. Una vez que un objeto se hace de solo lectura, cualquier intento de cambiar su estado generará una excepción."
-registro updateTextWith:''.
-(unObjeto isEmpty) ifTrue: [
-	registro updateTextWith: 'Esperando datos'.]
+(unObjeto isEmpty)ifTrue: [
+	registro setText: 'Esperando datos'.]
 ifFalse:[
 		col contents: (MiSistema colATexto: unObjeto). 
-		registro updateTextWith:(MiSistema colATexto: unObjeto)asString.
+		registro setText:(MiSistema colATexto: unObjeto)asString.
 		col contents: (MiSistema colATexto: unObjeto).
 ].
 self addMorph:registro.

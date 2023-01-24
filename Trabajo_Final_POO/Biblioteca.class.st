@@ -125,17 +125,13 @@ Biblioteca >> registrarPrestamoUsuario: unUsuario clibros: unaColLibros [
 |instancia|.
 (unUsuario verMulta )ifFalse:[
 	"esto deveria devolver nulo para que pueda realizar la promo"
-	colPrestamo ifNil:[
+	(colPrestamo )ifNil:[
 		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .	
 		]ifNotNil:[
 		"si ver estadoUsuario es true no puede hacer prestamo"
-	instancia :=((colPrestamo)detect:[:prest|(prest verEstadoUsuario: unUsuario)]).	
-	(instancia)ifNil:[
+	instancia :=((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)]).	
+	((instancia size)=0)ifTrue:[
 		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	
 		].	
 ].
-		 
-	
-	
-	
 ]

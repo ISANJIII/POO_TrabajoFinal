@@ -28,7 +28,6 @@ Usuario >> aTexto [
 tipo:='USUARIO PLUS'.
 tipoUsuario ifTrue: [ tipo:='USUARIO NO PLUS' ].
 texto:='Nombre: ',nombre asString,String cr,'Apellido: ',apellido asString ,String cr,'DNI: ',dni asString,String cr,tipo ,String cr,'Cantidad de Bibliotecas Agregadas: ',(colBibibliotecaInter size)asString,String cr. 
-self changed.
 ^texto .
 ]
 
