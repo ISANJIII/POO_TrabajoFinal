@@ -20,7 +20,7 @@ nota contents:'CUANDO SE CAMBIA DE USUARIO A USUARIO PLUS DEBE VOLVER A INICIAR 
 botonTipo :=BotonAccion crearBoton_nomb: ('CAMBIAR EL TIPO DE USUARIO') yDimension:400@50  yColor: Color pink.
 botonAgregar :=BotonAccion crearBoton_nomb: 'AGREGAR BIBLIOTECA' yDimension:400@50  yColor: Color pink.
 
-botonPrestamo :=BotonAccion crearBoton_nomb: 'REALIZAR PRESTAMO' yDimension:400@50  yColor: Color pink.
+botonPrestamo :=BotonAccion crearBoton_nomb: 'REALIZAR O DEVOLVER PRESTAMO' yDimension:400@50  yColor: Color pink.
 botonDevolver :=BotonAccion crearBoton_nomb: 'DEVOLVER PRESTAMO' yDimension:400@50  yColor: Color pink.
 botonInformacion :=BotonAccion crearBoton_nomb: 'INFORMACION SOBRE USUARIO' yDimension:400@50  yColor: Color pink.
 botonAgregar position:50@40.

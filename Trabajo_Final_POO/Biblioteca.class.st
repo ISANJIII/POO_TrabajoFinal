@@ -122,16 +122,23 @@ self agregarPrestamo: nuevoPrest.
 
 { #category : #'as yet unclassified' }
 Biblioteca >> registrarPrestamoUsuario: unUsuario clibros: unaColLibros [ 
-|instancia|.
+|instancia booleano|.
+booleano :=false.
+"si devuelve true puede hacer el prestamo"
 (unUsuario verMulta )ifFalse:[
 	"esto deveria devolver nulo para que pueda realizar la promo"
-	(colPrestamo )ifNil:[
-		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .	
-		]ifNotNil:[
+	(colPrestamo isEmpty)ifTrue:[
+		"self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros ."
+		booleano :=	true.
+		]ifFalse:[
 		"si ver estadoUsuario es true no puede hacer prestamo"
 	instancia :=((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)]).	
 	((instancia size)=0)ifTrue:[
-		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	
+		booleano :=true.
+		"self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	"
+		]
 		].	
 ].
+
+^booleano.
 ]
