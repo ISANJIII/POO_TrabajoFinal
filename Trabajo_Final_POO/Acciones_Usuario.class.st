@@ -28,7 +28,7 @@ botonPrestamo position: botonAgregar position +(0@80).
 botonDevolver  position: botonPrestamo position +(0@80).
 botonTipo position: botonDevolver position +(0@80).
 botonInformacion position: botonTipo position +(0@80).
-nota position:botonInformacion position +(0@80)-(30@0).
+nota position:botonInformacion position +(0@60)-(25@0).
     self addMorph:botonAgregar; addMorph:botonTipo;addMorph:botonPrestamo;addMorph:botonDevolver;addMorph:nota;addMorph: botonInformacion .
 
 botonAgregar mouseAction: [  Agregar_BibliotecaInteres crearOpcion_titulo: ('Agregar biblioteca de interes a ',UsuarioRecibido getNombre)  yUsuario: UsuarioRecibido.

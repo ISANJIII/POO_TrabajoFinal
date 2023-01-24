@@ -128,17 +128,16 @@ booleano :=false.
 (unUsuario verMulta )ifFalse:[
 	"esto deveria devolver nulo para que pueda realizar la promo"
 	(colPrestamo isEmpty)ifTrue:[
-		"self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros ."
+		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .
 		booleano :=	true.
 		]ifFalse:[
 		"si ver estadoUsuario es true no puede hacer prestamo"
 	instancia :=((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)]).	
 	((instancia size)=0)ifTrue:[
 		booleano :=true.
-		"self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	"
+		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	
 		]
 		].	
-].
 
-^booleano.
+
 ]

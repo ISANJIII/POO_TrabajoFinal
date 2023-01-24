@@ -5,27 +5,10 @@ Class {
 		'botonPrestamo',
 		'elegirLibro',
 		'terminarElegir',
-		'errorMulta',
-		'errorUsuario',
-		'errorMax',
-		'errorMaxAudio'
+		'error'
 	],
 	#category : #'Trabajo_Final_POO-Vista'
 }
-
-{ #category : #'as yet unclassified' }
-Realizar_Prestamo >> agregarAdvertencia [
-errorMulta:=StringMorph new .
-errorUsuario:=StringMorph new .
-errorMax:=StringMorph new .
-errorMaxAudio :=StringMorph new .
-errorMulta contents:'El usuario se encuentra con una multa'.
-errorUsuario contents:'El libro es solo para los usuario plus'.
-errorMax contents:'Supero el limite'.
-errorMaxAudio contents:'Supero el limite de audioLibro'.
-"posicion"
-errorMulta position:(760@500)+ (40@0).
-]
 
 { #category : #initialization }
 Realizar_Prestamo >> agregarBotones [ 
@@ -65,15 +48,21 @@ self agregarBotones .
 
 { #category : #'as yet unclassified' }
 Realizar_Prestamo >> realizarPrestamo_bibliteca: biblio [
-|lista listaLibro prest|.
-
+|lista listaLibro prest  contadorLibro contadorAudio puedePrestamo|.
+contadorLibro :=0.
+contadorAudio :=0.
+puedePrestamo :=true.
+"advertencias"
+error:=StringMorph new.
+error contents:''.
+error position:self position+ (300@200).
+self addMorph:error.
+""
 prest:=Prestamo crearPFPrest:(Date today)  yUsuario:UsuarioRecibido.
 "creo un Dictionary donde le paso el nombre de la biblioteca y la biblioteca a la cual corresponde el nombre" 
 prest addDependent: self.
 self update:(prest getColLibro).
 lista :=Dictionary new.
-
-
 (biblio getColLibro)do:[:libro|	lista at:(libro aTexto)put:libro].
 listaLibro:=SearchMorph new.
 listaLibro extent:410@60;searchList: (lista keys). 
@@ -82,11 +71,8 @@ listaLibro ghostText: 'SELECCIONA EL LIBRO A ELIMINAR'.
 "boton"
 elegirLibro  :=BotonAccion crearBoton_nomb: 'Agregar a Presta' yDimension:115@20  yColor: Color pink.
 elegirLibro  position: self position + (360@415).
-
 terminarElegir   :=BotonAccion crearBoton_nomb: 'Terminar' yDimension:115@20  yColor: Color pink.
 terminarElegir  position: self position + (250@415).
-
-
 "añadir al morph"
 self addMorph:elegirLibro;addMorph:listaLibro;addMorph:terminarElegir.
 "accion boton"
@@ -94,31 +80,59 @@ elegirLibro mouseAction: [
 		"veo el item seleccionado no es nulo"
 	(listaLibro selectedItem isNotNil)ifTrue:[
 		
-		"(UsuarioRecibido getTipo)ifTrue:[
-			
-			((listaLibro selectedItem )getTipo)
-			
-			]ifFalse:[
-			
-			
-		
-			]."
-		
-		prest agregarLibroPrestamo: (lista at:(listaLibro selectedItem )).
+		(UsuarioRecibido getTipo)ifTrue: [ 
+			(((lista at:(listaLibro selectedItem )))getTipo)ifTrue: [  
+				"esLibro"
+				(contadorLibro >=5)ifTrue:[
+					"supero el max"
+					puedePrestamo :=false.
+					error contents:'supero el maximo de libros'.
+					]	ifFalse: [
+							contadorLibro :=contadorLibro +1.
+						 
+						 ]
+				] ifFalse: [  
+				"es audio libro"
+				error contents:'El Libro elegido no esta disponible para Usuario no plus'.
+				puedePrestamo :=false.
+				]
+			 ] ifFalse: [ 
+			"usuario plus"
+			((listaLibro selectedItem )getTipo)ifTrue: [  
+				"esLibro"
+				(contadorLibro >=5)ifTrue:[
+					"supero el max"
+					puedePrestamo :=false. 
+					error contents:'supero el maximo de libros'.
+					]ifFalse: [ 
+						contadorLibro :=contadorLibro +1.
+					 ]
+				
+				] ifFalse: [  
+				"es audio libro"
+				(contadorAudio  >=5)ifTrue:[
+					"supero el max"
+					puedePrestamo :=false.
+					error contents:'supero el maximo de Audiolibros'.
+					]ifFalse:[
+					contadorAudio :=contadorAudio +1.
+					]			
+				]	
+			 ].
+		self addMorph:error.
+		(puedePrestamo)ifTrue:[
+   prest agregarLibroPrestamo: (lista at:(listaLibro selectedItem )).
 	lista removeKey: (listaLibro  selectedItem)  . 
 	listaLibro searchList: (lista keys). 
-	
-	
-	
+			].
+		puedePrestamo :=true.
+
 	].
 ].
+"ya elegi todos los libros"
 terminarElegir mouseAction: [ 
-		"(biblio registrarPrestamoUsuario: (prest getUsuarioP) clibros: (prest getColLibro))ifTrue:["
-			biblio agregarPrestamo: prest .
-			
-		"	]ifFalse:[
-			""puede ser que el usuario tenga una multa o bien este tenga en la coleccion de libros prestamos tenga mas de 5 libros o tiene un audio libro siendo este un usuario normal""
-			]."
+		(biblio registrarPrestamoUsuario: (prest getUsuarioP) clibros: (prest getColLibro))
+				
 		 ].
 
 
