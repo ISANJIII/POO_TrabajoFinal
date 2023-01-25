@@ -1,6 +1,6 @@
 Class {
 	#name : #MenuPrincipal,
-	#superclass : #BorderedMorph,
+	#superclass : #FullscreenMorph,
 	#instVars : [
 		'botonUsuario',
 		'botonBiblioteca',
@@ -19,8 +19,7 @@ self delete.
 MenuPrincipal >> fondoParaMiVentana [
 |fondo|.
 fondo:=(Form fromFileNamed: 'C:\Users\asdf\Downloads\marcos\marco1.png') asMorph.
-
-self extent: fondo extent.
+self extent: fondo extent .
 	self addMorphBack: fondo.
 
 ]
@@ -32,7 +31,6 @@ super initialize .
 self fondoParaMiVentana.
 miSistema :=Sistema_Gestor crearSistemaAUsar.
 self mostrarBotonesyTitulos .
-
 ]
 
 { #category : #'as yet unclassified' }
@@ -55,8 +53,8 @@ botonUsuario position: 50@155.
 botonBiblioteca  position: botonUsuario position + (0@80).
 titulo position: 200@15.
 "acciones"
-botonBiblioteca mouseAction: [ UI_biblioteca   crearOpcion_titulo: 'BIBLIOTECA' ySistema: miSistema  ].
-botonUsuario mouseAction: [UI_usuario crearOpcion_titulo: 'USUARIO' ySistema: miSistema   ].
+botonBiblioteca mouseAction: [ IU_biblioteca   crearOpcion_titulo: 'BIBLIOTECA' ySistema: miSistema  ].
+botonUsuario mouseAction: [IU_usuario crearOpcion_titulo: 'USUARIO' ySistema: miSistema   ].
 botonCerrar mouseAction: [ self cerrar.].
 
 ]

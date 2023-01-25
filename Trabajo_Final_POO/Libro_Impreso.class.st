@@ -8,11 +8,10 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Libro_Impreso class >> crearLibroImpreso_nombre:n yEditorial:ed yAnio_Edicion:aEd yCantidad_Pagina:cPag [
+Libro_Impreso class >> crearLibroImpreso_nombre:n yEditorial:ed yAnio_Edicion:aEd [ 
 |libro|.
 libro:=self new.
 libro inicializadorLibro_nombre: n yEditorial:ed  yAnio_Edicion:aEd.
-libro agregarCantidad_paginas: cPag.
 ^libro. 
 ]
 
@@ -22,9 +21,4 @@ Libro_Impreso >> aTexto [
 text:=super aTexto.
 text:=text,'LIBRO IMPRESO',String cr.
 ^text.
-]
-
-{ #category : #'as yet unclassified' }
-Libro_Impreso >> agregarCantidad_paginas:cantPaginas [
-cantidad_Paginas:=cantPaginas . 
 ]

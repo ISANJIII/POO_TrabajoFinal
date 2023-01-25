@@ -15,11 +15,12 @@ Class {
 
 { #category : #accessing }
 Registrar_Usuario >> agregarBotones [
-|temp|.
-temp:= RubScrolledTextMorph  new.
+|error|.
+error:=StringMorph new.
+error contents:''.
+error position:listaItems position + (0@50).
+self addMorph:error.
 "en Smalltalk Pharo significa que un objeto se hace de solo lectura, lo que significa que su estado no se puede modificar. Una vez que un objeto se hace de solo lectura, cualquier intento de cambiar su estado generará una excepción."
-temp beReadOnly .
-temp  position:190@280; extent:140@45.
 ""
 botonRegistrar := BotonAccion crearBoton_nomb: 'REGISTRAR' yDimension:100@20  yColor: Color pink.
 self addMorph:botonRegistrar.
@@ -31,17 +32,26 @@ botonRegistrar mouseAction: [
 	((datoNombre isNotEmpty ) & (datoApellido isNotEmpty ) & (datoDni isNotEmpty) & (datoContraseña isNotEmpty))
 	"se rellenaron todos las casillas"
 	ifTrue:[
+		(MiSistema existeDni: (datoDni input))ifTrue:[
+			"encontro un usuario ya registrado"
+			error contents:'El usuario ya esta registrado'.
+			self addMorph:error.
+			]ifFalse:[
 		|usuario|.
-		(cajaOpcion  verEstado) ifTrue:[
+		(cajaOpcion verEstado) ifTrue:[
+			self removeMorph: error.
 			"selecciono osea quiere ser plus"
 			usuario :=(UsuarioPlus crearUPlus_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )).		
 			] ifFalse:[
 			"no selecciono quiere ser usuario no plus"
 			usuario :=(Usuario crearU_nombre:(datoNombre input )  yApellido: (datoApellido input) yDni:(datoDni input)  yContraseña:(datoContraseña input )).
-			].	
 			MiSistema agregarUsuario:usuario.
 			Acciones_Usuario crearOpcion_titulo: (usuario getNombre) yUsuario: usuario .
-self cerrar.
+self cerrar.					
+			].	
+
+			].
+		
 		].
 	
 	].
@@ -71,7 +81,6 @@ Registrar_Usuario >> initialize [
 | pos |.
 super initialize.
 self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco3.png'.
-
 "creo los campos para introducir datos"
 pos:=50@50.
 cajaOpcion := BotonSeleccionar crearBSeleccionar_Nombre: 'Desea ser plus' tamanio: 20@20.
@@ -80,7 +89,6 @@ datoApellido :=IntroducirDato crearDialogo_tamanio: 150@10.
 datoDni :=IntroducirDato crearDialogo_tamanio: 150@10.
 datoContraseña:=IntroducirDato crearDialogo_tamanio: 150@10.
 listaItems  := SearchMorph new.
-"listaRegistro extent: 380@30 ;searchList: (miSistema getBibliotecasNombres)."
 self
 addMorph:datoNombre;addMorph:datoApellido;addMorph:datoDni;addMorph:datoContraseña;addMorph:listaItems;addMorph: cajaOpcion.
 "posicion"

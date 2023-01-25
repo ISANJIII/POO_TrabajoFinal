@@ -1,5 +1,5 @@
 Class {
-	#name : #'UI_biblioteca',
+	#name : #'IU_biblioteca',
 	#superclass : #VentanaO,
 	#instVars : [
 		'bibliotecaSistema',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-UI_biblioteca >> agregarBotones [ 
+IU_biblioteca >> agregarBotones [ 
 
 bibliotecaSistema:=BotonAccion crearBoton_nomb: 'MODIFICAR BIBLIOTECA' yDimension:400@50  yColor: Color pink.
 registrarBibliteca:=BotonAccion crearBoton_nomb: 'REGISTRAR BIBLIOTECA' yDimension:400@50  yColor: Color pink.
@@ -29,7 +29,7 @@ bibliotecaSistema mouseAction: [ Elegir_Biblioteca crearOpcion_titulo: 'MODIFICA
 ]
 
 { #category : #initialization }
-UI_biblioteca >> initialize [ 
+IU_biblioteca >> initialize [ 
 super initialize .
 self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco9.png'. 
 self agregarBotones .

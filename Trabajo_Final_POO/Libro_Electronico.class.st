@@ -8,11 +8,10 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Libro_Electronico class >> crearLibroElectronico_nombre:n yEditorial:ed yAnio_Edicion:aEd yFormato:form [
+Libro_Electronico class >> crearLibroElectronico_nombre:n yEditorial:ed yAnio_Edicion:aEd [ 
 |libro|.
 libro:=self new.
 libro inicializadorLibro_nombre: n yEditorial:ed  yAnio_Edicion:aEd.
-libro agregarFormato: form.
 ^libro. 
 ]
 
@@ -22,9 +21,4 @@ Libro_Electronico >> aTexto [
 text:=super aTexto.
 text:=text,'LIBRO ELECTRONICO',String cr.
 ^text.
-]
-
-{ #category : #'as yet unclassified' }
-Libro_Electronico >> agregarFormato:format [
-formato:=format. 
 ]

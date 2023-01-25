@@ -1,5 +1,5 @@
 Class {
-	#name : #'UI_usuario',
+	#name : #'IU_usuario',
 	#superclass : #VentanaO,
 	#instVars : [
 		'botonIniciarSesion',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-UI_usuario >> agregarBotones [
+IU_usuario >> agregarBotones [
 botonIniciarSesion :=BotonAccion crearBoton_nomb: 'INICIAR SESION' yDimension:400@50  yColor: Color pink.
 botonRegistrarse :=BotonAccion crearBoton_nomb: 'REGISTRARSE' yDimension:400@50  yColor: Color pink.
 "POSICION Y AÑADIR AL MORPH"
@@ -24,7 +24,7 @@ botonRegistrarse  mouseAction: [ Registrar_Usuario crearOpcion_titulo: 'Registra
 ]
 
 { #category : #initialization }
-UI_usuario >> initialize [
+IU_usuario >> initialize [
 super initialize.
 self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco9.png'.
 self agregarBotones.

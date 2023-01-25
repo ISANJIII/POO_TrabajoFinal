@@ -13,7 +13,7 @@ self mostrarInformacion .
 { #category : #'as yet unclassified' }
 Informacion_Usuario >> mostrarInformacion [
 |listaInformacion|.
-listaInformacion := MostrarRegistro crearRegistro_Dimension: 300@250 yPosicion: (260@40).
+listaInformacion := MostrarRegistro crearRegistro_Dimension: 300@250 yPosicion: (100@60).
 listaInformacion borderWidth: 2.
 listaInformacion borderColor: Color pink.
 listaInformacion setText:(UsuarioRecibido aTexto).

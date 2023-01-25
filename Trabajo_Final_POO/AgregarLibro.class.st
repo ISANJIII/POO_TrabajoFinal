@@ -57,7 +57,7 @@ titulo4 position: tipoLibro position-(0@20).
 
 { #category : #accessing }
 AgregarLibro >> botonAgregar [
-
+""
 botonAgregar :=BotonAccion crearBoton_nomb: 'AGREGAR' yDimension:100@20  yColor: Color pink.
 botonAgregar position: 385@415.
 self addMorph:botonAgregar.
@@ -65,31 +65,24 @@ self addMorph:botonAgregar.
 botonAgregar mouseAction: [ 
 (datoNombre isNotEmpty  & datoEditorial isNotEmpty & datoAnioEd isNotEmpty & tipoLibro isNotNil)ifTrue: [ 
 	|libro|.
-	((tipoLibro selectedItem)= 'Libro fisico')ifTrue:[
-
+	((tipoLibro selectedItem)='Libro fisico')ifTrue:[
 		libro:=Libro crearLibro_nombre: (datoNombre input) yEditorial:(datoEditorial input)  yAnio_Edicion: (datoAnioEd input).
 	BiblioRe agregarLibro: libro.
-"	BiblioRe crearPrestamo_Usuario: (Usuario crearU_nombre: 's' yApellido:'s'   yDni: 's'  yContraseña:'s'  ) yColLibro: 	libro."
-		].
+		].	
 	((tipoLibro selectedItem)= 'Libro electronico')ifTrue:[
-		
-		"libro:=Libro_Electronico crearLibroElectronico_nombre:  yEditorial:  yAnio_Edicion:  yFormato: 
-	"
+		BiblioRe agregarLibro: (Libro_Electronico crearLibroElectronico_nombre:(datoNombre input)  yEditorial:(datoEditorial input)  yAnio_Edicion:(datoAnioEd input) ).	
 		]. 
 	((tipoLibro selectedItem)= 'Libro impreso')ifTrue:[
-		
-		
-	
+		BiblioRe agregarLibro: (Libro_Impreso crearLibroImpreso_nombre:(datoNombre input)  yEditorial:(datoEditorial input)  yAnio_Edicion:(datoAnioEd input) ).
 		]. 
 	((tipoLibro selectedItem)= 'Audio Libro')ifTrue:[
-		
-		
-		].  
+		BiblioRe agregarLibro: (Audio_Libro crearAudioLibro_nombre:(datoNombre input)  yEditorial:(datoEditorial input)  yAnio_Edicion:(datoAnioEd input) ) .	
+		].  	
 	 ]. 
+"limpio"
 datoNombre clear.
 datoEditorial clear.
 datoAnioEd clear.
-tipoLibro clearArea .
 
 
 ].

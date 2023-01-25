@@ -106,6 +106,15 @@ Sistema_Gestor >> devolverUsuario_dni: numDni [
 ]
 
 { #category : #'as yet unclassified' }
+Sistema_Gestor >> existeDni:unDni [
+"El mensaje anySatisfy: retorna true si al menos un objeto en la colección cumple con la condición especificada, o false si ninguno de los objetos en la colección cumple con la condición."
+^colUsuario anySatisfy: [:usuario|((usuario getDni)asString)=unDni].
+
+
+
+]
+
+{ #category : #'as yet unclassified' }
 Sistema_Gestor >> getBibliotecas [
 ^ colBiblioteca .
 ]

@@ -141,3 +141,8 @@ booleano :=false.
 
 
 ]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> verUsuarioRealizoPrestamo:unUsuario [
+^(((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)])isNotEmpty).
+]
