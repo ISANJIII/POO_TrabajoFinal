@@ -28,10 +28,10 @@ fechaVencimientoCuota := Date today + 30 days.
 ]
 
 { #category : #'as yet unclassified' }
-UsuarioPlus >> puedeRealizarPrestamo: numDni [
+UsuarioPlus >> realizoPrestamo_DNI: numDni [
 |puedeRealizarPrest|.
 "polimorfismo por refinamiento"
-puedeRealizarPrest:=super puedeRealizarPrestamo: numDni.
+puedeRealizarPrest:=super realizoPrestamo_DNI: numDni.
 
 (puedeRealizarPrest)ifTrue:[
 	(self vencioCuota)ifTrue:[

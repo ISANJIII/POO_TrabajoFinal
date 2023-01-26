@@ -29,10 +29,10 @@ self addMorph:botonPrestamo.
 
 (listaBInteres isNotNil)ifTrue:[
 	botonPrestamo mouseAction: [  
-		self removeMorph: botonPrestamo;removeMorph: listaBInteres .
+	"	self removeMorph: botonPrestamo;removeMorph: listaBInteres ."
 	"	Biblioteca_Prestamo crearOpcion_titulo: 'biblio' yBiblioteca:(dictionary at:(listaBInteres  selectedItem))  yUsuario: UsuarioRecibido ."
 		self realizarPrestamo_bibliteca: (dictionary at:(listaBInteres  selectedItem)).
-	
+	self removeMorph: botonPrestamo;removeMorph: listaBInteres .
 		]
 	]
 
@@ -86,7 +86,6 @@ self addMorph:elegirLibro;addMorph:listaLibro;addMorph:terminarElegir.
 	elegirLibro mouseAction: [  
 		"veo el item seleccionado no es nulo"
 	(listaLibro selectedItem isNotNil)ifTrue:[
-		
 		(UsuarioRecibido getTipo)ifTrue: [ 
 			(((lista at:(listaLibro selectedItem )))getTipo)ifTrue: [  
 				"esLibro"

@@ -1,6 +1,6 @@
 Class {
 	#name : #MenuPrincipal,
-	#superclass : #FullscreenMorph,
+	#superclass : #BorderedMorph,
 	#instVars : [
 		'botonUsuario',
 		'botonBiblioteca',

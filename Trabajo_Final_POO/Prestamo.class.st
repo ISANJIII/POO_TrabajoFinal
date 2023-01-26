@@ -31,7 +31,7 @@ prest inicializadorPrestamo_colLibro:cLibro yUsuarioPrestamo:usuario fecha_Prest
 { #category : #toString }
 Prestamo >> aTexto [ 
 |texto|.
-texto:='Usuario prestamo: ', ((usuarioPrestamo)getNombre),String cr, 'CANTIDAD LIBRO PRESTAMO: ',(colLibro size)asString,String cr,'Fecha del prestamo: ',((fecha_Prestamo)asString),String cr   .
+texto:='Usuario prestamo: ', ((usuarioPrestamo)getNombre),String cr, 'CANTIDAD LIBRO PRESTAMO: ',(colLibro size)asString,String cr,'Fecha del prestamo: ',((fecha_Prestamo)asString),String cr,'Fecha de Entrega: ',((fecha_Entrega )asString),String cr   .
 ^texto .
 ]
 
@@ -39,6 +39,11 @@ texto:='Usuario prestamo: ', ((usuarioPrestamo)getNombre),String cr, 'CANTIDAD L
 Prestamo >> agregarLibroPrestamo:unLibro [
 colLibro add:unLibro.
 self changed: colLibro .
+]
+
+{ #category : #'as yet unclassified' }
+Prestamo >> fechaEntrega [
+fecha_Entrega :=(Date today)asString.
 ]
 
 { #category : #'as yet unclassified' }
@@ -71,5 +76,5 @@ fecha_Prestamo :=fPres.
 { #category : #'as yet unclassified' }
 Prestamo >> verEstadoUsuario: unUsuario [
 "veo si el usuario se encuentra en el prestamo"
-^(usuarioPrestamo  puedeRealizarPrestamo:( unUsuario getDni )).
+^(usuarioPrestamo  realizoPrestamo_DNI:( unUsuario getDni )).
 ]

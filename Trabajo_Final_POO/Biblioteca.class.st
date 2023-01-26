@@ -3,13 +3,14 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'identificador',
-		'colPrestamo',
+		'colPrestamoActivo',
 		'direccion',
 		'nombre',
 		'telefono_Contacto',
 		'nombre_Representante',
 		'diasParaPrestar',
-		'colLibro'
+		'colLibro',
+		'colPrestamoInactivo'
 	],
 	#category : #'Trabajo_Final_POO-Modelo'
 }
@@ -26,8 +27,8 @@ biblioteca inicializadorBiblioteca_id: ident yDireccion: dir yNombre: nomb yTelC
 Biblioteca >> aTexto [ 
 |texto|.
 texto :=''.
-texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccion asString ,String cr,'Nombre Establecimiento: ',nombre asString,String cr,'Num Contacto: ',telefono_Contacto asString,String cr, 'Nombre Representante',nombre_Representante asString,String cr, 'Cantidad de libros registrados: ', (colLibro size)asString,String cr, 'Cantidad de prestamos: ', (colPrestamo  size)asString,String cr. 
-^texto .
+texto:='Identificador: ',identificador asString,String cr,'Direccion: ',direccion asString ,String cr,'Nombre Establecimiento: ',nombre asString,String cr,'Num Contacto: ',telefono_Contacto asString,String cr, 'Nombre Representante',nombre_Representante asString,String cr, 'Cantidad de libros registrados: ', (colLibro size)asString,String cr, 'Prestamos activo: ', (colPrestamoActivo  size)asString,String cr,'Prestamos inactivo: ', (colPrestamoInactivo size)asString,String cr. 
+^texto.
 ]
 
 { #category : #'as yet unclassified' }
@@ -42,8 +43,8 @@ self changed:colLibro.
 { #category : #'as yet unclassified' }
 Biblioteca >> agregarPrestamo: unPrestamo [
 
-colPrestamo add: unPrestamo .
-self changed:colPrestamo.
+colPrestamoActivo add: unPrestamo .
+self changed:colPrestamoActivo.
 ]
 
 { #category : #'as yet unclassified' }
@@ -70,9 +71,25 @@ self metodoAux_Crear: cLibro yUsuario: unUsuario .
 ]
 
 { #category : #'as yet unclassified' }
+Biblioteca >> devolverPrestamo_Usuario: unUsuario [
+"devuelve la instancia del prestamo que hizo el usuario"
+^(colPrestamoActivo) detect:[:pres| pres verEstadoUsuario: unUsuario].
+]
+
+{ #category : #'as yet unclassified' }
 Biblioteca >> eliminarLibro:unLibro [
 colLibro remove:unLibro.
 self changed: colLibro .
+]
+
+{ #category : #'as yet unclassified' }
+Biblioteca >> eliminarPrestamoActivo:unPrest [
+colPrestamoActivo remove:unPrest.
+"modifico la entrega"
+unPrest fechaEntrega.
+colPrestamoInactivo add:unPrest.
+self changed:colPrestamoActivo.
+self changed:colPrestamoInactivo.
 ]
 
 { #category : #'as yet unclassified' }
@@ -93,13 +110,14 @@ Biblioteca >> getNombreEstablecimiento [
 
 { #category : #'as yet unclassified' }
 Biblioteca >> getPrestamo [
-^ colPrestamo .
+^ colPrestamoActivo .
 ]
 
 { #category : #'as yet unclassified' }
 Biblioteca >> inicializadorBiblioteca_id: ident yDireccion: dir yNombre: nomb yTelContacto: numC yRepresentante: nomR yDiasParaPrestar: dPrestar [
 colLibro :=OrderedCollection new.
-colPrestamo :=OrderedCollection new.
+colPrestamoActivo :=OrderedCollection new.
+colPrestamoInactivo :=OrderedCollection new.
 identificador :=ident.
 direccion := dir.
 nombre := nomb.
@@ -127,12 +145,12 @@ booleano :=false.
 "si devuelve true puede hacer el prestamo"
 (unUsuario verMulta )ifFalse:[
 	"esto deveria devolver nulo para que pueda realizar la promo"
-	(colPrestamo isEmpty)ifTrue:[
+	(colPrestamoActivo isEmpty)ifTrue:[
 		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .
 		booleano :=	true.
 		]ifFalse:[
 		"si ver estadoUsuario es true no puede hacer prestamo"
-	instancia :=((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)]).	
+	instancia :=((colPrestamoActivo)select:[:prest|(prest verEstadoUsuario: unUsuario)]).	
 	((instancia size)=0)ifTrue:[
 		booleano :=true.
 		self crearPrestamo_Usuario: unUsuario  yColLibro: unaColLibros .].	
@@ -144,5 +162,5 @@ booleano :=false.
 
 { #category : #'as yet unclassified' }
 Biblioteca >> verUsuarioRealizoPrestamo:unUsuario [
-^(((colPrestamo)select:[:prest|(prest verEstadoUsuario: unUsuario)])isNotEmpty).
+^(((colPrestamoActivo )select:[:prest|(prest verEstadoUsuario: unUsuario)])isNotEmpty).
 ]

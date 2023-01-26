@@ -100,12 +100,12 @@ multado :=false.
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> puedeRealizarPrestamo: numDni [
-|puedeRealizarPrest|.
-puedeRealizarPrest :=false.
+Usuario >> realizoPrestamo_DNI: numDni [
+|realizoPrest|.
+realizoPrest :=false.
 "este metodo se usa para saber si el numDni que viene por parametro que se lo envia la clase prestamo es igual al dni del usuario... osea si es igual es porque ya realizo un prestamo"
-(dni = numDni )ifTrue: [ puedeRealizarPrest :=true ].
-^puedeRealizarPrest .
+(dni = numDni )ifTrue: [ realizoPrest :=true ].
+^realizoPrest .
 
 ]
 
