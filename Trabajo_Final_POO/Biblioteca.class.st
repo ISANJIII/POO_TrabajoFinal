@@ -71,9 +71,9 @@ self metodoAux_Crear: cLibro yUsuario: unUsuario .
 ]
 
 { #category : #'as yet unclassified' }
-Biblioteca >> devolverPrestamo_Usuario: unUsuario [
+Biblioteca >> devolverPrestamo_Usuario: unUsuario [ 
 "devuelve la instancia del prestamo que hizo el usuario"
-^(colPrestamoActivo) detect:[:pres| pres verEstadoUsuario: unUsuario].
+^(colPrestamoActivo) select: [:pres| pres verEstadoUsuario: unUsuario] thenCollect: [:each | each].
 ]
 
 { #category : #'as yet unclassified' }
@@ -84,9 +84,15 @@ self changed: colLibro .
 
 { #category : #'as yet unclassified' }
 Biblioteca >> eliminarPrestamoActivo:unPrest [
+|dias|.
+dias:=(diasParaPrestar)asNumber.
 colPrestamoActivo remove:unPrest.
 "modifico la entrega"
 unPrest fechaEntrega.
+(unPrest noContieneAudioLibro )ifTrue:[
+	dias:=(dias/2)truncated .
+	].
+(unPrest getUsuarioP)agregarFechaPosibleMulta: (((unPrest getFechaPrestamo)asDate) + (dias days )).
 colPrestamoInactivo add:unPrest.
 self changed:colPrestamoActivo.
 self changed:colPrestamoInactivo.

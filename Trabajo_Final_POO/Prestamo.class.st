@@ -52,6 +52,11 @@ Prestamo >> getColLibro [
 ]
 
 { #category : #'as yet unclassified' }
+Prestamo >> getFechaPrestamo [
+^fecha_Prestamo .
+]
+
+{ #category : #'as yet unclassified' }
 Prestamo >> getUsuarioP [
 ^usuarioPrestamo.
 ]
@@ -71,6 +76,11 @@ usuarioPrestamo:=Usuario new.
 colLibro :=colL .
 usuarioPrestamo :=uPres.
 fecha_Prestamo :=fPres.
+]
+
+{ #category : #'as yet unclassified' }
+Prestamo >> noContieneAudioLibro [
+^colLibro anySatisfy:[:libro| libro getTipo].
 ]
 
 { #category : #'as yet unclassified' }

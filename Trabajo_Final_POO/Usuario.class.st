@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'colBibibliotecaInter',
 		'nombre',
-		'multado',
+		'fechaMulta',
 		'apellido',
 		'tipoUsuario',
 		'dni',
@@ -43,6 +43,11 @@ Usuario >> agregarBibliotecaInteres:unaBiblio [
 colBibibliotecaInter add:unaBiblio.
 self changed:colBibibliotecaInter.
 
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> agregarFechaPosibleMulta:unaFecha [
+fechaMulta :=unaFecha.
 ]
 
 { #category : #'as yet unclassified' }
@@ -95,8 +100,7 @@ nombre := nomb.
 apellido :=ape.
 dni :=numDni .
 contraseña :=pass .
-"no esta multado"
-multado :=false.
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -111,9 +115,20 @@ realizoPrest :=false.
 
 { #category : #'as yet unclassified' }
 Usuario >> verMulta [
+|estaMultado|.
+
 "El sistema multa con una suspensión de k dias al usuario que se retrasa en la devolución de los libros, es decir que por esa cantidad de días no podrá solicitar nuevos préstamos.
 si es falso es porque no esta multado.
 "
-
-^multado .
+fechaMulta ifNil: [ 
+	"osea no esta multado"
+	estaMultado :=false ] ifNotNil:[
+	(fechaMulta < Date today)ifTrue:[
+		"ya termino la multa"
+		estaMultado :=true. 
+		]ifFalse: [
+		estaMultado :=false.	
+		].
+	]. 
+^estaMultado.
 ]

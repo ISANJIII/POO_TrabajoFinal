@@ -21,7 +21,7 @@ self addMorph:botonRegistrar.
 botonRegistrar position: 385@415.
 "accion del boton"
 botonRegistrar mouseAction: [ 
-	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty )ifTrue:[
+	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty & ((datoDiasParaPrestar input)isNumber) )ifTrue:[
 		"ESTAN RELLENOS"
 		|biblio|.
 		
