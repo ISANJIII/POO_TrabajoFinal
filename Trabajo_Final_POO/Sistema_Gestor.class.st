@@ -150,3 +150,8 @@ colUsuario do:[:i| (i buscarUsuario_Dni: ((numDni)asString) yContraseña: ((pass
 "el metodo detect devuelve una referencia no una copia"
 "^ (colUsuario detect:[:usuario| (usuario buscarUsuario_Dni:((numDni)asString)  yContraseña:((password)asString))]). "
 ]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> verSiEsNumero:num [
+^((num) allSatisfy: [:c | c isDigit]).
+]

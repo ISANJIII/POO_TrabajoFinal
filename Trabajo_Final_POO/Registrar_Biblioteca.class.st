@@ -15,14 +15,20 @@ Class {
 
 { #category : #'as yet unclassified' }
 Registrar_Biblioteca >> agregarBotones [
+|aviso|.
+aviso:=StringMorph new.
+aviso contents:'No es un numero la cantidad de dias para prestar'.
 
 botonRegistrar := BotonAccion crearBoton_nomb: 'REGISTRAR' yDimension:100@20  yColor: Color pink.
 self addMorph:botonRegistrar.
 botonRegistrar position: 385@415.
 "accion del boton"
 botonRegistrar mouseAction: [ 
-	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty & ((datoDiasParaPrestar input)isNumber) )ifTrue:[
-		"ESTAN RELLENOS"
+	(datoIdentificador isNotEmpty &  datoDireccion isNotEmpty & datoNombreE isNotEmpty & datoTelCont isNotEmpty & datoNombRepresentante isNotEmpty & datoDiasParaPrestar isNotEmpty )ifTrue:[
+		
+		(MiSistema verSiEsNumero:(datoDiasParaPrestar input))ifTrue: [ 
+			"es numero"
+			"ESTAN RELLENOS"
 		|biblio|.
 		
 		biblio :=Biblioteca crearBiblioteca_id: (datoIdentificador input) yDireccion:(datoDireccion input)  yNombre: (datoNombreE input) yTelContacto:(datoTelCont input) yRepresentante:(datoNombRepresentante input ) yDiasParaPrestar: (datoDiasParaPrestar input).
@@ -30,6 +36,14 @@ botonRegistrar mouseAction: [
 		Modificar_bibliteca crearOpcion_titulo:(datoNombreE input)   yBiblioteca: biblio .
 		
 		self cerrar .
+			 ] ifFalse: [ 
+			""
+			aviso position:self position +(20@350)  .
+			self addMorph:aviso.
+			 ].
+		
+			
+		
 		].
 	 ].
 ]
