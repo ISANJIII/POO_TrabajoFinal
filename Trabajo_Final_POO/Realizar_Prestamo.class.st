@@ -29,8 +29,6 @@ self addMorph:botonPrestamo.
 
 (listaBInteres isNotNil)ifTrue:[
 	botonPrestamo mouseAction: [  
-	"	self removeMorph: botonPrestamo;removeMorph: listaBInteres ."
-	"	Biblioteca_Prestamo crearOpcion_titulo: 'biblio' yBiblioteca:(dictionary at:(listaBInteres  selectedItem))  yUsuario: UsuarioRecibido ."
 		self realizarPrestamo_bibliteca: (dictionary at:(listaBInteres  selectedItem)).
 	self removeMorph: botonPrestamo;removeMorph: listaBInteres .
 		]

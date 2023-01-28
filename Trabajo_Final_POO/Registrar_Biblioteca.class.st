@@ -93,7 +93,6 @@ addMorph:datoIdentificador;addMorph:datoDireccion;addMorph:datoNombreE;addMorph:
 { #category : #initialization }
 Registrar_Biblioteca >> initialize [
 super initialize.
-self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco2.png'.
 self añadorCampos;agregarTitulos .
 MiSistema addDependent: self.
 "cargo los usuarios que tengo registrado"

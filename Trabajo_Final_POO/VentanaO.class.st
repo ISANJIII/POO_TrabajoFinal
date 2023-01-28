@@ -70,6 +70,7 @@ self extent: fondo extent.
 { #category : #initialization }
 VentanaO >> initialize [ 
 super initialize .
+self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco3.png'.
 ""
 col:=StringMorph new.
 ""

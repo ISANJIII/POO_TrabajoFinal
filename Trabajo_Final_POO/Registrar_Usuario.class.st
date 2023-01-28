@@ -82,7 +82,6 @@ titulo5 position: datoContraseña position-(0@20).
 Registrar_Usuario >> initialize [ 
 | pos |.
 super initialize.
-self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco3.png'.
 "creo los campos para introducir datos"
 pos:=50@50.
 cajaOpcion := BotonSeleccionar crearBSeleccionar_Nombre: 'Desea ser plus' tamanio: 20@20.

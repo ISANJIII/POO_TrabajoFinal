@@ -1,3 +1,11 @@
+"
+Esta clase corresponde a un autor el cual el sistema gestor tiene conocimiento de este. 
+Esta compuesto por las siguientes variables de instancia:
+	Nombre.
+	Apellido.
+
+	 
+"
 Class {
 	#name : #Autor,
 	#superclass : #Object,
@@ -21,7 +29,7 @@ Autor >> getNombre [
 ^nombre .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #Inicializador }
 Autor >> inicializadorAutor:name yApellido:surname [
 nombre:=name.
 apellido := surname .

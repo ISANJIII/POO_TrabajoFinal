@@ -1,3 +1,12 @@
+"
+Esta clase esta compuesto por las siguientes variables:
+    Instance Variables
+	colAutor:		<Autor>
+	colBiblioteca:		<Biblioteca>
+	colUsuario:		<Usuario>
+			
+las instancias de autor solo puede ser creada cuando se quiera ingresar un libro, cuando se añada un libro podremos añadir al autor pero no se podra crear desde el sistema_gestor si no que desde libro y al crearla desde libro se añadira a la colAutor.
+"
 Class {
 	#name : #'Sistema_Gestor',
 	#superclass : #Object,
@@ -149,6 +158,21 @@ colUsuario do:[:i| (i buscarUsuario_Dni: ((numDni)asString) yContraseña: ((pass
 ^exito.
 "el metodo detect devuelve una referencia no una copia"
 "^ (colUsuario detect:[:usuario| (usuario buscarUsuario_Dni:((numDni)asString)  yContraseña:((password)asString))]). "
+]
+
+{ #category : #'as yet unclassified' }
+Sistema_Gestor >> verSiEsFecha: unaFecha [
+"$ se utiliza para especificar caracteres especiales."
+^(unaFecha allSatisfy: [:c | c isDigit or: [c = $-]])
+    ifTrue: [
+        (unaFecha size = 10)
+            and: [
+                (unaFecha at: 5) = $-
+                and: [
+                    (unaFecha at: 8) = $-
+                ]
+            ]
+    ]ifFalse: [false].
 ]
 
 { #category : #'as yet unclassified' }

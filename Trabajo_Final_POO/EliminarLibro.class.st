@@ -49,7 +49,6 @@ botonEliminar mouseAction: [
 { #category : #initialization }
 EliminarLibro >> initialize [
 super initialize.
-self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco4.png'.
 BiblioRe addDependent: self.
 self update: (BiblioRe getColLibro ).
 self botonEliminar .

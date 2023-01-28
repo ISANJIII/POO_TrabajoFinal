@@ -77,11 +77,6 @@ prestamo :=unaBiblio devolverPrestamo_Usuario: UsuarioRecibido.
 			self removeMorph: listaPrestAudio.
 			 ].				
 				].
-	
-		
-		
-	
-			
 		].
 	]ifFalse:[
 	texto contents:'EL USUARIO NO REALIZO EL PRESTAMO EN ESTA BIBLIOTECA'.

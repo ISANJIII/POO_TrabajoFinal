@@ -44,6 +44,5 @@ Modificar_bibliteca >> agregarBotones [
 { #category : #initialization }
 Modificar_bibliteca >> initialize [ 
 super initialize .
-self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco9.png'. 
 self agregarBotones .
 ]

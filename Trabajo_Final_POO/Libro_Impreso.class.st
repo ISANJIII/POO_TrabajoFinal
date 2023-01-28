@@ -1,3 +1,18 @@
+"
+La clase libro esta compuesto por:
+
+    Instance Variables
+	anio_Edicion:		<string>
+	editorial:		<string>
+	nombre:		<string>
+	tipo:		<boolean>
+El cual hereda de la super-clase solo que este clase cuenta con otro atributo mas que es : 
+	 Instance Variables
+	cantidad_Paginas:		<int>
+
+		
+Esta variable esta compuesto por 3 subclases y esta superclase corresponde a un libro fisico original osea no es lo mismo que un libro impreso. Pero cuando el usuario realiza un prestamo dependiendo del tipo de usuario que sea plus o no plus la variable de instancia cambia en AudioLibro debido a que al realizar el prestamo los libros fisico, impreso y electronico cuantan para un prestamo en cambio el AudioLibro cuenta para otro prestamo.
+"
 Class {
 	#name : #'Libro_Impreso',
 	#superclass : #Libro,
@@ -15,7 +30,7 @@ libro inicializadorLibro_nombre: n yEditorial:ed  yAnio_Edicion:aEd.
 ^libro. 
 ]
 
-{ #category : #toString }
+{ #category : #propios }
 Libro_Impreso >> aTexto [ 
 |text|.
 text:=super aTexto.

@@ -60,7 +60,6 @@ Acciones_Usuario crearOpcion_titulo:'Opciones' yUsuario: (MiSistema devolverUsua
 { #category : #initialization }
 IniciarSesion_Usuario >> initialize [ 
 super initialize.
-self fondoParaMiVentana:'C:\Users\asdf\Downloads\marcos\marco3.png'.
 self agregarBotones .
 
 ]

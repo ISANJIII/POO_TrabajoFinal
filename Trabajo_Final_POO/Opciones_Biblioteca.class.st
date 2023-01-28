@@ -19,7 +19,7 @@ opcion openCenteredInWorld.
 { #category : #initialization }
 Opciones_Biblioteca >> initialize [
 super initialize.
-self fondoParaMiVentana: 'C:\Users\asdf\Downloads\marcos\marco6.png'.
+
 ]
 
 { #category : #'as yet unclassified' }
